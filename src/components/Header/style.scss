@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+.wrapper {
+	background-image: linear-gradient(
+		180deg,
+		rgba(59, 59, 59, 0.911),
+		transparent
+	);
+	display: flex;
+	justify-content: space-between;
+	padding: 0 48px;
+	position: fixed;
+	width: 100vw;
+	top: 0;
+	z-index: 99999;
+	height: 80px;
+}
+.nav-home-icon {
+	img {
+		background-color: transparent;
+		height: 100px;
+		object-fit: cover;
+	}
+}
+.nav-menu {
+	padding-top: 19px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	line-height: 22.001px;
+	.nav-item > a {
+		font-size: 18px;
+		padding: 18px;
+		font-family: "Roboto", sans-serif;
+		transition: all 0.3s ease;
+		box-sizing: border-box;
+		color: white;
+		line-height: 28.287px;
+	}
+}
+.nav-menu-handle {
+	padding-top: 19px;
+	justify-content: space-between;
+	align-items: center;
+	display: flex;
+	.btn-dark-mode {
+		margin: 0 16px;
+	}
+	.switch {
+		position: relative;
+		cursor: pointer;
+		width: 61px;
+		height: 30px;
+		display: block;
+		margin: 0 auto;
+		overflow: hidden;
+		box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+		border-radius: 100rem;
+		transition: background-color 0.25s linear;
+		&::after {
+			content: "";
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			border-radius: 4rem;
+			background-color: white;
+			top: 5px;
+			left: 5px;
+			transition: background-color 0.25s linear, transform 0.25s linear;
+		}
+		&-input {
+			display: none;
+		}
+		&-input:checked + .switch {
+			background-color: #f3a952;
+		}
+		&-input:checked + .switch:after {
+			transform: translateX(29px);
+			background-color: white;
+		}
+	}
+	i {
+		font-size: 22px;
+		color: white;
+		margin: 0 16px;
+	}
+	.btn-share > button {
+		margin: 0 16px;
+		font-size: 12px;
+		padding: 5px 12px;
+		width: unset;
+		color: #fff;
+		background-color: hsla(0, 0%, 100%, 0.12549019607843137);
+		border: 1px solid hsla(0, 0%, 100%, 0.3137254901960784);
+		font-weight: 500;
+		border-radius: 50px;
+		margin: 0 12px;
+	}
+	.btn-signUp > button {
+		padding: 6px 16px;
+		font-size: 16px;
+		min-width: 120px;
+		border-radius: 32px;
+		color: #fff;
+		background-color: hsla(0, 0%, 100%, 0.12549019607843137);
+		border: 1px solid hsla(0, 0%, 100%, 0.3137254901960784);
+		font-weight: 500;
+	}
+	.btn-login > button {
+		min-width: unset;
+		color: #fff;
+		background-color: transparent;
+		border: 0;
+		font-weight: 700;
+		font-size: 18px;
+		padding: 18px;
+	}
+}
