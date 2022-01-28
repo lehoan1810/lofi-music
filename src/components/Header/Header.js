@@ -46,7 +46,9 @@ const Header = () => {
 							id="switch"
 							className="switch-input"
 						/>
-						<label htmlFor="switch" className="switch"></label>
+						<label htmlFor="switch" className="switch">
+							<i className={mode === "day" ? "bx bx-sun" : "bx bx-moon"}></i>
+						</label>
 					</div>
 					<i className="bx bx-fullscreen"></i>
 					<div className="btn-share">

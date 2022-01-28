@@ -56,6 +56,9 @@
 		box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 		border-radius: 100rem;
 		transition: background-color 0.25s linear;
+		&:hover {
+			opacity: 0.5;
+		}
 		&::after {
 			content: "";
 			position: absolute;
@@ -77,11 +80,29 @@
 			transform: translateX(29px);
 			background-color: white;
 		}
+		.bx-moon {
+			position: absolute;
+			left: -12px;
+			top: 5px;
+			opacity: 1;
+			transition: opacity 1s;
+		}
+		.bx-sun {
+			position: absolute;
+			right: -12px;
+			top: 5px;
+			opacity: 1;
+			transition: opacity 1s;
+		}
 	}
 	i {
 		font-size: 22px;
 		color: white;
 		margin: 0 16px;
+		&:hover {
+			opacity: 0.8;
+			cursor: pointer;
+		}
 	}
 	.btn-share > button {
 		margin: 0 16px;
@@ -94,6 +115,9 @@
 		font-weight: 500;
 		border-radius: 50px;
 		margin: 0 12px;
+		&:hover {
+			opacity: 0.8;
+		}
 	}
 	.btn-signUp > button {
 		padding: 6px 16px;
@@ -104,6 +128,9 @@
 		background-color: hsla(0, 0%, 100%, 0.12549019607843137);
 		border: 1px solid hsla(0, 0%, 100%, 0.3137254901960784);
 		font-weight: 500;
+		&:hover {
+			opacity: 0.8;
+		}
 	}
 	.btn-login > button {
 		min-width: unset;
@@ -113,5 +140,8 @@
 		font-weight: 700;
 		font-size: 18px;
 		padding: 18px;
+		&:hover {
+			opacity: 0.8;
+		}
 	}
 }
