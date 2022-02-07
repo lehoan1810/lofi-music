@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Stack from "@mui/material/Stack";
-import Slider from "@mui/material/Slider";
+// import Stack from "@mui/material/Stack";
+// import Slider from "@mui/material/Slider";
 import { changeMood } from "../../redux/actions";
 
 import ReactAudioPlayer from "react-audio-player";
-import { changeRain } from "../../redux/actions";
-import { changeVolume } from "../../redux/actions";
+// import { changeRain } from "../../redux/actions";
+// import { changeVolume } from "../../redux/actions";
 import "./style.scss";
 
 const Dashboard = () => {
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.moodState);
 	const rainData = useSelector((state) => state.rainState);
-	const volumeData = useSelector((state) => state.volumeState);
+	// const volumeData = useSelector((state) => state.volumeState);
 
 	const { rainValue } = rainData;
 	const { moodValue } = data;
-	const { volumeValue } = volumeData;
+	// const { volumeValue } = volumeData;
 
 	const [openMood, setOpenMood] = useState(false);
 	const [openFocus, setOpenFocus] = useState(false);
@@ -30,9 +30,9 @@ const Dashboard = () => {
 		dispatch(changeMood(e.target.id));
 	};
 
-	const changeVolumeHandler = (e) => {
-		dispatch(changeVolume(e.target.value));
-	};
+	// const changeVolumeHandler = (e) => {
+	// 	dispatch(changeVolume(e.target.value));
+	// };
 	return (
 		<>
 			{!openMood && (
