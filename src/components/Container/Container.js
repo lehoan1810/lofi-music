@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import Dashboard from "../Dashboard/Dashboard";
 import ButtonRain from "../RainMode/ButtonRain";
 import "./style.scss";
 
@@ -60,6 +61,7 @@ const Container = (props) => {
 				</video>
 			</div>
 			<ButtonRain />
+			<Dashboard />
 		</>
 	);
 };
