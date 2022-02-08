@@ -1,0 +1,31 @@
+.content-player {
+	position: absolute;
+	bottom: 0;
+	width: 100vw;
+	z-index: 10;
+	height: 100px;
+	display: flex;
+	overflow: hidden;
+	padding: 32px;
+	.control {
+		display: flex;
+		align-items: center;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	.btn-skip,
+	.btn-play,
+	.btn-next {
+		cursor: pointer;
+		transition: all 0.8 ease-in;
+		&:hover {
+			opacity: 0.4;
+		}
+	}
+	.btn-play img {
+		width: 55px;
+		height: 55px;
+		margin: 0 16px;
+	}
+}

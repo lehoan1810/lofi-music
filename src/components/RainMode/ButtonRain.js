@@ -26,7 +26,7 @@ const ButtonRain = () => {
 				/>
 			)}
 			<div onClick={handleRain} className="btn-rain">
-				<i class="bx bx-cloud-light-rain"></i>
+				<i className="bx bx-cloud-light-rain"></i>
 			</div>
 		</>
 	);
