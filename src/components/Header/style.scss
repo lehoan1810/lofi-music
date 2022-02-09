@@ -13,6 +13,7 @@
 	top: 0;
 	z-index: 99999;
 	height: 80px;
+	flex-wrap: wrap;
 }
 .nav-home-icon {
 	img {
@@ -143,5 +144,16 @@
 		&:hover {
 			opacity: 0.8;
 		}
+	}
+}
+@media screen and (min-width: 1024px) {
+	.wrapper {
+		justify-content: center;
+	}
+}
+
+@media screen and (max-width: 1023px) {
+	.wrapper {
+		justify-content: center;
 	}
 }
