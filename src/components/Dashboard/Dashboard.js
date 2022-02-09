@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Stack from "@mui/material/Stack";
 import Slider from "@mui/material/Slider";
-import { changeMood } from "../../redux/actions";
-
+import { changeMood, changeRain } from "../../redux/actions";
 import ReactAudioPlayer from "react-audio-player";
 // import { changeRain } from "../../redux/actions";
 import { changeVolume } from "../../redux/actions";
@@ -15,13 +14,20 @@ const Dashboard = () => {
 	const rainData = useSelector((state) => state.rainState);
 	const volumeData = useSelector((state) => state.volumeState);
 
-	const { rainValue } = rainData;
+	const { rainValue, rainMode } = rainData;
+	console.log("rain: ", rainValue);
+	console.log("rain-mode: ", rainMode);
 	const { moodValue } = data;
 	const { volumeValue } = volumeData;
 
 	const [openMood, setOpenMood] = useState(false);
 	const [openFocus, setOpenFocus] = useState(false);
 	const [cityTraffic, setCityTraffic] = useState(0);
+	const [River, setRiver] = useState(0);
+	const [Rain, setRain] = useState(0);
+	const [Ocean, setOcean] = useState(0);
+	const [Bird, setBird] = useState(0);
+	const [Snow, setSnow] = useState(0);
 	const openMoodHandler = () => {
 		setOpenMood(!openMood);
 		setOpenFocus(false);
@@ -33,6 +39,20 @@ const Dashboard = () => {
 
 	const changeVolumeHandler = (e) => {
 		dispatch(changeVolume(e.target.value));
+	};
+
+	const rainHandle = (e) => {
+		setRain(e.target.value);
+		if (e.target.value === 0) {
+			dispatch(changeRain("rain", 0));
+		} else {
+			dispatch(changeRain("clear", e.target.value));
+		}
+
+		// if (e.target.value > 0) dispatch(changeRainStatus("clear", cityRain));
+		// // if value = 0 then stop rain
+		// else if (e.target.value === 0) dispatch(changeRainStatus("rain", 0));
+		// setCityRain(e.target.value);
 	};
 	return (
 		<>
@@ -119,6 +139,82 @@ const Dashboard = () => {
 										className="slider"
 										value={cityTraffic}
 										onChange={(e) => setCityTraffic(e.target.value)}
+									/>
+								</div>
+								<div className="noise-option">
+									<p>City Rain</p>
+									<ReactAudioPlayer
+										preload="auto"
+										autoPlay
+										src="https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/effects/rain_city.mp3"
+										loop
+										volume={Rain / 100}
+									/>
+									<Slider
+										className="slider"
+										value={Rain}
+										// onChange={(e) => setRain(e.target.value)}
+										onChange={(e) => rainHandle(e)}
+									/>
+								</div>
+								<div className="noise-option">
+									<p>Ocean</p>
+									<ReactAudioPlayer
+										preload="auto"
+										autoPlay
+										src="https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/effects/ocean.mp3"
+										loop
+										volume={Ocean / 100}
+									/>
+									<Slider
+										className="slider"
+										value={Ocean}
+										onChange={(e) => setOcean(e.target.value)}
+									/>
+								</div>
+								<div className="noise-option">
+									<p>Snow</p>
+									<ReactAudioPlayer
+										preload="auto"
+										autoPlay
+										src="https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/effects/snow.mp3"
+										loop
+										volume={Snow / 100}
+									/>
+									<Slider
+										className="slider"
+										value={Snow}
+										onChange={(e) => setSnow(e.target.value)}
+									/>
+								</div>
+								<div className="noise-option">
+									<p>River</p>
+									<ReactAudioPlayer
+										preload="auto"
+										autoPlay
+										src="https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/effects/river.mp3"
+										loop
+										volume={River / 100}
+									/>
+									<Slider
+										className="slider"
+										value={River}
+										onChange={(e) => setRiver(e.target.value)}
+									/>
+								</div>
+								<div className="noise-option">
+									<p>Bird</p>
+									<ReactAudioPlayer
+										preload="auto"
+										autoPlay
+										src="https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/effects/birds.mp3"
+										loop
+										volume={Bird / 100}
+									/>
+									<Slider
+										className="slider"
+										value={Bird}
+										onChange={(e) => setBird(e.target.value)}
 									/>
 								</div>
 							</div>

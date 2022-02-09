@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { changeDayNight } from "../../redux/actions";
 import { Link } from "react-router-dom";
@@ -12,6 +12,25 @@ const Header = () => {
 	const { mode } = daynight;
 	const checkDarkMode = () => {
 		dispatch(changeDayNight(mode));
+	};
+	const [fullscreen, setFullscreen] = useState(false);
+	const fullscreenHandler = () => {
+		if (!fullscreen) {
+			setFullscreen(true);
+			const e = document.documentElement;
+			e.requestFullscreen();
+		} else {
+			setFullscreen(false);
+			if (!document.exitFullscreen) {
+				document.exitFullscreen();
+			} else if (document.webkitExitFullscreen) {
+				/* With Safari */
+				document.webkitExitFullscreen();
+			} else if (document.msExitFullscreen) {
+				/* With IE */
+				document.msExitFullscreen();
+			}
+		}
 	};
 	return (
 		<>
@@ -50,7 +69,9 @@ const Header = () => {
 							<i className={mode === "day" ? "bx bx-sun" : "bx bx-moon"}></i>
 						</label>
 					</div>
-					<i className="bx bx-fullscreen"></i>
+					<div onClick={fullscreenHandler}>
+						<i className="bx bx-fullscreen"></i>
+					</div>
 					<div className="btn-share">
 						<button>Share</button>
 					</div>

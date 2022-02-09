@@ -127,12 +127,11 @@
 			margin-bottom: 0;
 			font-family: "Roboto", sans-serif;
 			color: rgba(252, 252, 252, 0.377);
-			margin-right: 40px;
 		}
 		.slider {
 			height: 10px !important;
 			color: #f3a952 !important;
-			width: 160px !important;
+			width: 180px !important;
 			.MuiSlider-rail {
 				color: #4e5054;
 			}
@@ -142,6 +141,6 @@
 		display: flex;
 		align-items: center;
 		text-align: center;
-		// justify-content: space-between;
+		justify-content: space-between;
 	}
 }

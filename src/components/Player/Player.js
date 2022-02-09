@@ -27,10 +27,7 @@ const Player = () => {
 		<div className="content-player">
 			<audio loop src={audios[audioIndex].src} ref={audioElement}></audio>
 			<div className="music-info">
-				<span>Music by</span>
-				<span className="music-icon">
-					<p>@_libra</p>
-				</span>
+				<span>Music by: @_libra</span>
 			</div>
 			<div className="control">
 				<div
