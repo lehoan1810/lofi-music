@@ -7,7 +7,6 @@ import "./style.scss";
 
 const Header = () => {
 	const daynight = useSelector((state) => state.modeState);
-	console.log("daynight: ", daynight);
 	const dispatch = useDispatch();
 	const { mode } = daynight;
 	const checkDarkMode = () => {

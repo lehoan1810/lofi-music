@@ -12,7 +12,6 @@ const Container = (props) => {
 	const { rainMode } = rain;
 	const { check } = props;
 	const combineMode = `${mode}-${rainMode}`;
-	console.log("check: ", check);
 	return (
 		<>
 			<div className="background-video video-player">

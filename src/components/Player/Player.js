@@ -22,7 +22,6 @@ const Player = () => {
 		}
 		audioElement.current.volume = volumeValue / 100;
 	});
-	console.log("useref: ", audioElement);
 	return (
 		<div className="content-player">
 			<audio loop src={audios[audioIndex].src} ref={audioElement}></audio>
