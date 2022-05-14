@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap");
+
+.label-chanel {
+	margin-right: 30px;
+	font-family: "Roboto", sans-serif;
+}
+.message-header {
+	padding: 10px 10px;
+	justify-content: space-between;
+	.form-control {
+		padding: 5px;
+		border-radius: 5px;
+		font-family: "Roboto", sans-serif;
+	}
+}

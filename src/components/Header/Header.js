@@ -4,9 +4,13 @@ import { changeDayNight } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import Container from "../Container/Container";
 import "./style.scss";
+import ModalCreateName from "../../common/ModalCreateName";
 
 const Header = () => {
 	const daynight = useSelector((state) => state.modeState);
+
+	const [openModal, setOpenModal] = useState(true);
+
 	const dispatch = useDispatch();
 	const { mode } = daynight;
 	const checkDarkMode = () => {
@@ -82,6 +86,7 @@ const Header = () => {
 					</div>
 				</div>
 			</nav>
+			<ModalCreateName openModal={openModal} setOpenModal={setOpenModal} />
 			<Container check={mode} />
 		</>
 	);

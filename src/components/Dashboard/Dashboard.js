@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Stack from "@mui/material/Stack";
 import Slider from "@mui/material/Slider";
@@ -6,8 +6,15 @@ import { changeMood, changeRain } from "../../redux/actions";
 import ReactAudioPlayer from "react-audio-player";
 // import { changeRain } from "../../redux/actions";
 import { changeVolume } from "../../redux/actions";
-import "./style.scss";
 
+import "./style.scss";
+import axios from "axios";
+// import io from "socket.io-client";
+import SockJS from "sockjs-client";
+import Stomp from "stompjs";
+import Message from "../Message";
+
+var stompClient = null;
 const Dashboard = () => {
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.moodState);
@@ -27,6 +34,37 @@ const Dashboard = () => {
 	const [Ocean, setOcean] = useState(0);
 	const [Bird, setBird] = useState(0);
 	const [Snow, setSnow] = useState(0);
+
+	const [listMessage, setListMessage] = useState([]);
+
+	const SOCKET_URL = "https://lofi-chill-chatting.herokuapp.com/ws";
+	const BASE_URL = "https://lofi-chill-chatting.herokuapp.com";
+	// var sock = new SockJS(SOCKET_URL);
+	// let stompClient = Stomp.over(sock);
+	// sock.onopen = function () {
+	// 	console.log("open");
+	// };
+
+	// useEffect(() => {}, [stompClient]);
+	// stompClient.connect({}, function (frame) {
+	// 	stompClient.subscribe("/message/CHANNEL_1", function (greeting) {
+	// 		console.log("list: ", greeting.body.message);
+	// 	});
+	// });
+
+	const url = `${BASE_URL}/rest/message/CHANNEL_1`;
+	useEffect(() => {
+		const getList = async () => {
+			try {
+				const res = await axios.get(url);
+				console.log("data: ", res.data);
+				setListMessage(res.data);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		getList();
+	}, []);
 
 	const openMoodHandler = () => {
 		setOpenMood(!openMood);
@@ -59,6 +97,7 @@ const Dashboard = () => {
 		// else if (e.target.value === 0) dispatch(changeRainStatus("rain", 0));
 		// setCityRain(e.target.value);
 	};
+
 	return (
 		<>
 			{!openMood && (
@@ -234,102 +273,10 @@ const Dashboard = () => {
 						></i>
 					</div>
 					{openChat && (
-						<div className="form-message">
-							<div className="message-header">
-								<div className="message-avatar">
-									<div className="avatar-border avatar-status">
-										<span className="_status"></span>
-										<img
-											className="image-cover avatar-image"
-											src="https://i.pinimg.com/736x/aa/a3/94/aaa39465e439b4bf4f7e20ecad105856.jpg"
-											alt=""
-										/>
-									</div>
-
-									<span>Ciin</span>
-								</div>
-
-								<div className="message-menu">
-									<div className="menu-item">
-										<img
-											src="https://cdn-icons.flaticon.com/png/512/3059/premium/3059446.png?token=exp=1651434341~hmac=59d5efb1e8cff4f769ded2c891e30555"
-											alt=""
-										/>
-									</div>
-									<div className="menu-item">
-										<img
-											src="https://cdn-icons-png.flaticon.com/512/1160/1160041.png"
-											alt=""
-										/>
-									</div>
-									<div onClick={openChatHandler} className="menu-item">
-										<img
-											src="https://cdn-icons.flaticon.com/png/512/5368/premium/5368396.png?token=exp=1651434318~hmac=519fa0138c9ccaaffe5b1f549abac0ca"
-											alt=""
-										/>
-									</div>
-								</div>
-							</div>
-							<div className="message-content">
-								<div className="guest">
-									<div className="message-guest">
-										<img
-											className="message-guest-image"
-											src="https://i.pinimg.com/736x/aa/a3/94/aaa39465e439b4bf4f7e20ecad105856.jpg"
-											alt=""
-										/>
-										<span className="guest-content">
-											Xin chào mình là Ciin laf toi dday nef ban oiw oiwf oiw,
-											mai banj cos di hocj ko bal bla bla bloa bla dfg reg rg rg
-											rg
-										</span>
-									</div>
-									<div className="message-guest">
-										<img
-											className="message-guest-image"
-											src="https://i.pinimg.com/736x/aa/a3/94/aaa39465e439b4bf4f7e20ecad105856.jpg"
-											alt=""
-										/>
-										<span className="guest-content">Xin chào mình là Ciin</span>
-									</div>
-								</div>
-								<div className="my">
-									<div className="message-my">
-										<span className="my-content">
-											Xin chào mình là Ciin laf toi dday nef ban oiw oiwf oiw,
-											mai banj cos di hocj ko bal bla bla bloa bla dfg reg rg rg
-											rg
-										</span>
-									</div>
-									<div className="message-my">
-										<span className="my-content">
-											Xin chào mình là Ciin laf toi dday nef ban oiw oiwf oiw,
-											mai banj cos di hocj ko bal bla bla bloa bla dfg reg rg rg
-											rg
-										</span>
-									</div>
-									<div className="message-my">
-										<span className="my-content">
-											Xin chào mình là Ciin laf toi dday nef ban oiw oiwf oiw,
-											mai banj cos di hocj ko bal bla bla bloa bla dfg reg rg rg
-											rg
-										</span>
-									</div>
-									<div className="message-my">
-										<span className="my-content">
-											Xin chào mình là Ciin laf toi dday nef ban oiw oiwf oiw,
-											mai banj cos di hocj ko bal bla bla bloa bla dfg reg rg rg
-											rg
-										</span>
-									</div>
-								</div>
-							</div>
-							<div className="message-send">
-								<input type="text" placeholder="Write a message..." />
-								<i class="bx bx-wink-smile"></i>
-								<i class="bx bx-send"></i>
-							</div>
-						</div>
+						<Message
+							listMessage={listMessage}
+							openChatHandler={openChatHandler}
+						/>
 					)}
 					<div className={`icon ` + (openFocus && "active")}>
 						<i
