@@ -37,20 +37,7 @@ const Dashboard = () => {
 
 	const [listMessage, setListMessage] = useState([]);
 
-	const SOCKET_URL = "https://lofi-chill-chatting.herokuapp.com/ws";
-	const BASE_URL = "https://lofi-chill-chatting.herokuapp.com";
-	// var sock = new SockJS(SOCKET_URL);
-	// let stompClient = Stomp.over(sock);
-	// sock.onopen = function () {
-	// 	console.log("open");
-	// };
-
-	// useEffect(() => {}, [stompClient]);
-	// stompClient.connect({}, function (frame) {
-	// 	stompClient.subscribe("/message/CHANNEL_1", function (greeting) {
-	// 		console.log("list: ", greeting.body.message);
-	// 	});
-	// });
+	const BASE_URL = process.env.REACT_APP_LOFI_URL;
 
 	const url = `${BASE_URL}/rest/message/CHANNEL_1`;
 	useEffect(() => {
@@ -69,11 +56,13 @@ const Dashboard = () => {
 	const openMoodHandler = () => {
 		setOpenMood(!openMood);
 		setOpenFocus(false);
+		setOpenChat(false);
 	};
 
 	const openChatHandler = () => {
 		setOpenChat(!openChat);
 		setOpenFocus(false);
+		setOpenMood(false);
 	};
 
 	const changeMoodHandler = (e) => {

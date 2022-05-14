@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Exit from "../../assets/images/exit.png";
 import axios from "axios";
 import "./style.scss";
-import { getLocal } from "../../LocalStorage/getLocal";
+import { getLocal, setLocal } from "../../LocalStorage/getLocal";
 
 const ModalCreateName = (prop) => {
 	const { openModal, setOpenModal } = prop;
 	const [name, setName] = useState("");
+	const checkToken = setLocal("token");
+	const checkName = setLocal("name");
 	const url = `${process.env.REACT_APP_LOFI_URL}/rest/message/dk-ten`;
 	const handelRegister = async () => {
 		try {
@@ -17,6 +19,12 @@ const ModalCreateName = (prop) => {
 			console.error(error);
 		}
 	};
+
+	useEffect(() => {
+		if (checkToken && checkName) {
+			setOpenModal(false);
+		}
+	}, []);
 
 	return (
 		<>

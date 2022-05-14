@@ -8,8 +8,6 @@ import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import "./style.scss";
 
-const SOCKET_URL = "https://lofi-chill-chatting.herokuapp.com/ws";
-
 const Message = (prop) => {
 	const { openChatHandler } = prop;
 	const [message, setMessage] = useState("");
@@ -20,14 +18,17 @@ const Message = (prop) => {
 	const tokenStorage = setLocal("token");
 
 	const urls = `${process.env.REACT_APP_LOFI_URL}/rest/message/${chanel}`;
+	const SOCKET_URL = `${process.env.REACT_APP_LOFI_URL}/ws`;
 
 	var sock = new SockJS(SOCKET_URL);
 	let stompClient = Stomp.over(sock);
 	var sub = useRef();
 
 	useEffect(() => {
+		const controller = new AbortController();
+		const signal = controller.signal;
 		axios
-			.get(urls)
+			.get(urls, { signal: signal })
 			.then((res) => {
 				setListMessage(res.data);
 				console.log(res.data);
@@ -48,6 +49,9 @@ const Message = (prop) => {
 				console.log("connect error", error);
 			}
 		);
+		return () => {
+			controller.abort();
+		};
 	}, [chanel]);
 
 	const url = `${process.env.REACT_APP_LOFI_URL}/rest/message`;
@@ -112,11 +116,12 @@ const Message = (prop) => {
 					{listMessage &&
 						listMessage.map((item, id) => (
 							<div key={id} className="message-guest">
-								<img
+								{/* <img
 									className="message-guest-image"
 									src="https://i.pinimg.com/736x/aa/a3/94/aaa39465e439b4bf4f7e20ecad105856.jpg"
 									alt=""
-								/>
+								/> */}
+								<span className="guest-name">{item.guestName}</span>
 								<span className="guest-content">{item.message}</span>
 							</div>
 						))}

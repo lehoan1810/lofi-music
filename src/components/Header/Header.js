@@ -75,7 +75,7 @@ const Header = () => {
 					<div onClick={fullscreenHandler}>
 						<i className="bx bx-fullscreen"></i>
 					</div>
-					<div className="btn-share">
+					{/* <div className="btn-share">
 						<button>Share</button>
 					</div>
 					<div className="btn-signUp">
@@ -83,7 +83,7 @@ const Header = () => {
 					</div>
 					<div className="btn-login">
 						<button>Login</button>
-					</div>
+					</div> */}
 				</div>
 			</nav>
 			<ModalCreateName openModal={openModal} setOpenModal={setOpenModal} />
