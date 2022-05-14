@@ -148,12 +148,14 @@
 	position: absolute;
 	right: 100%;
 	top: -70%;
-	background-color: #fff;
+	// background-color: #fff;
+	background-color: rgba(0, 0, 0, 0.8);
 	width: 400px;
 	flex-direction: column;
 	padding: 15px 10px;
 	transform-origin: right top;
 	border-radius: 20px;
+	// z-index: 1000000;
 }
 .message {
 	&-header {
