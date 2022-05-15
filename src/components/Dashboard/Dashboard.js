@@ -1,18 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Stack from "@mui/material/Stack";
 import Slider from "@mui/material/Slider";
-import { changeMood, changeRain } from "../../redux/actions";
-import ReactAudioPlayer from "react-audio-player";
-// import { changeRain } from "../../redux/actions";
-import { changeVolume } from "../../redux/actions";
-
-import "./style.scss";
+import Stack from "@mui/material/Stack";
 import axios from "axios";
-// import io from "socket.io-client";
-import SockJS from "sockjs-client";
-import Stomp from "stompjs";
+import React, { useEffect, useState } from "react";
+import ReactAudioPlayer from "react-audio-player";
+import { useDispatch, useSelector } from "react-redux";
+import { changeMood, changeRain, changeVolume } from "../../redux/actions";
 import Message from "../Message";
+import "./style.scss";
 
 var stompClient = null;
 const Dashboard = () => {
@@ -22,6 +16,8 @@ const Dashboard = () => {
 	const volumeData = useSelector((state) => state.volumeState);
 
 	const { rainValue, rainMode } = rainData;
+	console.log("show rainData dashboard: ", rainData);
+
 	const { moodValue } = data;
 	const { volumeValue } = volumeData;
 
@@ -181,12 +177,13 @@ const Dashboard = () => {
 										autoPlay
 										src="https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/effects/rain_city.mp3"
 										loop
-										volume={Rain / 100}
+										volume={rainValue / 100}
+										// volume={rainValue !== 0 ? rainValue / 100 : Rain / 100}
 									/>
 									<Slider
 										className="slider"
-										value={Rain}
-										// onChange={(e) => setRain(e.target.value)}
+										// value={Rain}
+										value={rainValue}
 										onChange={(e) => rainHandle(e)}
 									/>
 								</div>

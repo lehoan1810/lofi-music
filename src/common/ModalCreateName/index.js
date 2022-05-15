@@ -10,13 +10,15 @@ const ModalCreateName = (prop) => {
 	const checkToken = setLocal("token");
 	const checkName = setLocal("name");
 	const url = `${process.env.REACT_APP_LOFI_URL}/rest/message/dk-ten`;
+	console.log(url);
 	const handelRegister = async () => {
 		try {
 			const res = await axios.post(url, { name: name });
 			getLocal("token", res.data.token);
 			getLocal("name", res.data.name);
+			window.location.reload();
 		} catch (error) {
-			console.error(error);
+			console.error(error.message);
 		}
 	};
 
@@ -43,6 +45,10 @@ const ModalCreateName = (prop) => {
 								onChange={(e) => setName(e.target.value)}
 							/>
 						</div>
+						{setName && setName.length <= 6 && (
+							<span>bạn vui lòng nhập lớn hơn 6 ký tự</span>
+						)}
+						<span></span>
 						<div className="btn-create-name">
 							<button onClick={handelRegister}>Đăng ký</button>
 						</div>

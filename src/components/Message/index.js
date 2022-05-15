@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import Call from "../../assets/images/call.png";
-import Video from "../../assets/images/video.png";
 import Exit from "../../assets/images/exit.png";
 import axios from "axios";
 import { setLocal } from "../../LocalStorage/getLocal";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
+import InputEmoji from "react-input-emoji";
 import "./style.scss";
 
 const Message = (prop) => {
@@ -135,6 +134,12 @@ const Message = (prop) => {
 					placeholder="Write a message..."
 					onKeyUp={handleKeyUp}
 				/>
+				{/* <InputEmoji
+					value={message}
+					onChange={(e) => setMessage(e.target.value)}
+					onKeyUp={handleKeyUp}
+					placeholder="Write a message..."
+				/> */}
 				<i className="bx bx-wink-smile"></i>
 				<i onClick={sendMessage} className="bx bx-send"></i>
 			</div>
