@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Home from "../../assets/images/home.png";
 import { getLocal } from "../../LocalStorage/getLocal";
 import "./style.scss";
 
 const Login = () => {
+	const navigate = useNavigate();
 	const [userName, setUserName] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -18,6 +20,7 @@ const Login = () => {
 			console.log(response.data);
 			getLocal("userName", userName);
 			getLocal("token", response.data.accessToken);
+			navigate("/admin/ManagerUser");
 		} catch (error) {
 			console.error(error);
 		}
