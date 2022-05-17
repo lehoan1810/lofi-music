@@ -1,7 +1,7 @@
 export const getLocal = (key, value) => {
-	localStorage.setItem(key, value);
+	sessionStorage.setItem(key, value);
 };
 
 export const setLocal = (key) => {
-	return localStorage.getItem(key);
+	return sessionStorage.getItem(key);
 };

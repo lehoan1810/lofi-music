@@ -1,8 +1,27 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import Home from "../../assets/images/home.png";
+import { getLocal } from "../../LocalStorage/getLocal";
 import "./style.scss";
 
 const Login = () => {
+	const [userName, setUserName] = useState("");
+	const [password, setPassword] = useState("");
+
+	const url = `${process.env.REACT_APP_LOFI_URL}/rest/admin/login`;
+	const onSubmit = async (e) => {
+		try {
+			const response = await axios.post(url, {
+				userName,
+				password,
+			});
+			console.log(response.data);
+			getLocal("userName", userName);
+			getLocal("token", response.data.accessToken);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 	return (
 		<div className="signin-container">
 			<div className="signup">
@@ -20,15 +39,19 @@ const Login = () => {
 						id="fullname"
 						className="signup-input"
 						placeholder="Eg: John Doe"
+						onChange={(e) => setUserName(e.target.value)}
 					/>
 					<label className="signup-label">Email</label>
 					<input
-						type="email"
+						type="password"
 						id="email"
 						className="signup-input"
-						placeholder="Eg: johndoe@gmai.com"
+						placeholder="********"
+						onChange={(e) => setPassword(e.target.value)}
 					/>
-					<button className="signup-submit">Login</button>
+					<button onClick={onSubmit} className="signup-submit">
+						Login
+					</button>
 				</div>
 			</div>
 		</div>

@@ -33,8 +33,9 @@ const ManagerUser = () => {
 					<thead>
 						<tr>
 							<th>Avatar</th>
-							<th className="item-name-title">Họ và Tên</th>
+							<th className="custom-title">Họ và Tên</th>
 							<th>Trạng Thái</th>
+							<th>Xem</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -55,156 +56,11 @@ const ManagerUser = () => {
 								<div className="action-handel">Đang Hoạt Động</div>
 							</td>
 
-							{/* <td>
-								<div className="action-handel">
-									<button
-										// onClick={(e) => deleteUser(item._id, item.name, e)}
-										className="action-delete"
-									>
-										Delete
-									</button>
-								</div>
-							</td> */}
-						</tr>
-						<tr>
 							<td>
-								<div className="avatar-center avatar-status">
-									<span className="_status"></span>
-									<img
-										className="image-cover avatar-image"
-										src="https://i.pinimg.com/736x/8e/57/ec/8e57ec1bbfed10c8e66f34f129a34638.jpg"
-										alt=""
-									/>
+								<div className="action-seen">
+									<button>Delete</button>
 								</div>
 							</td>
-							<td className="item-name-table">Vũ Nguyễn Hồng Ân sdf sdgsg </td>
-
-							<td>
-								<div className="action-handel">Đang Hoạt Động</div>
-							</td>
-
-							{/* <td>
-								<div className="action-handel">
-									<button
-										// onClick={(e) => deleteUser(item._id, item.name, e)}
-										className="action-delete"
-									>
-										Delete
-									</button>
-								</div>
-							</td> */}
-						</tr>
-						<tr>
-							<td>
-								<div className="avatar-center avatar-status">
-									<span className="_status"></span>
-									<img
-										className="image-cover avatar-image"
-										src="https://i.pinimg.com/736x/8e/57/ec/8e57ec1bbfed10c8e66f34f129a34638.jpg"
-										alt=""
-									/>
-								</div>
-							</td>
-							<td className="item-name-table">Vũ Nguyễn Hồng Ân</td>
-
-							<td>
-								<div className="action-handel">Đang Hoạt Động</div>
-							</td>
-
-							{/* <td>
-								<div className="action-handel">
-									<button
-										// onClick={(e) => deleteUser(item._id, item.name, e)}
-										className="action-delete"
-									>
-										Delete
-									</button>
-								</div>
-							</td> */}
-						</tr>
-						<tr>
-							<td>
-								<div className="avatar-center avatar-status">
-									<span className="_status"></span>
-									<img
-										className="image-cover avatar-image"
-										src="https://i.pinimg.com/736x/8e/57/ec/8e57ec1bbfed10c8e66f34f129a34638.jpg"
-										alt=""
-									/>
-								</div>
-							</td>
-							<td className="item-name-table">Vũ Nguyễn Hồng Ân</td>
-
-							<td>
-								<div className="action-handel">Đang Hoạt Động</div>
-							</td>
-
-							{/* <td>
-								<div className="action-handel">
-									<button
-										// onClick={(e) => deleteUser(item._id, item.name, e)}
-										className="action-delete"
-									>
-										Delete
-									</button>
-								</div>
-							</td> */}
-						</tr>
-						<tr>
-							<td>
-								<div className="avatar-center avatar-status">
-									<span className="_status"></span>
-									<img
-										className="image-cover avatar-image"
-										src="https://i.pinimg.com/736x/8e/57/ec/8e57ec1bbfed10c8e66f34f129a34638.jpg"
-										alt=""
-									/>
-								</div>
-							</td>
-							<td className="item-name-table">Vũ Nguyễn Hồng Ân</td>
-
-							<td>
-								<div className="action-handel">Đang Hoạt Động</div>
-							</td>
-
-							{/* <td>
-								<div className="action-handel">
-									<button
-										// onClick={(e) => deleteUser(item._id, item.name, e)}
-										className="action-delete"
-									>
-										Delete
-									</button>
-								</div>
-							</td> */}
-						</tr>
-						<tr>
-							<td>
-								<div className="avatar-center avatar-status">
-									<span className="_status"></span>
-									<img
-										className="image-cover avatar-image"
-										src="https://i.pinimg.com/736x/8e/57/ec/8e57ec1bbfed10c8e66f34f129a34638.jpg"
-										alt=""
-									/>
-								</div>
-							</td>
-							<td className="item-name-table">Vũ Nguyễn Hồng Ân</td>
-
-							<td>
-								<div className="action-handel">Đang Hoạt Động</div>
-							</td>
-
-							{/* <td>
-								<div className="action-handel">
-									<button
-										// onClick={(e) => deleteUser(item._id, item.name, e)}
-										className="action-delete"
-									>
-										Delete
-									</button>
-								</div>
-							</td> */}
 						</tr>
 					</tbody>
 				</table>

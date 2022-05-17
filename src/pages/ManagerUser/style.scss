@@ -107,7 +107,7 @@ $radius: 0.2rem;
 }
 
 .table {
-	/* width: 80%; */
+	width: 70%;
 	flex: 3;
 	// overflow-y: auto;
 	background-color: white;
@@ -125,6 +125,7 @@ $radius: 0.2rem;
 .table tr {
 	border-bottom: 1px solid #e6e9ec;
 	display: table;
+	width: 100%;
 }
 .table tbody {
 	overflow-y: auto;
@@ -158,6 +159,9 @@ $radius: 0.2rem;
 	padding: 1rem;
 	white-space: nowrap;
 }
+.custom-title {
+	text-align: center !important;
+}
 .table td {
 	vertical-align: middle;
 	padding: 1.5rem 1rem;
@@ -165,6 +169,8 @@ $radius: 0.2rem;
 	font-size: 14px;
 	font-weight: normal;
 	color: #333;
+	// text-align: center;
+	width: 100px;
 }
 .table .image-text {
 	display: flex;
@@ -199,10 +205,29 @@ $radius: 0.2rem;
 	background-color: #eee;
 	border-radius: 1rem;
 }
-.item-name-table {
-	max-width: 300px;
-}
+
 .item-name-title {
-	width: 180px;
+	// width: 400px;
 	text-align: center;
+}
+.action-handel {
+	background-color: #13d2b8;
+	padding: 8px;
+	color: white;
+	border-radius: 10px;
+	text-align: center;
+	font-weight: 600;
+	font-size: 13px;
+}
+.action-seen {
+	// width: 100%;
+	text-align: center;
+
+	button {
+		padding: 5px 10px;
+		border: none;
+		background-color: #5b71d2;
+		color: white;
+		border-radius: 10px;
+	}
 }
