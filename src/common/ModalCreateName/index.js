@@ -9,7 +9,8 @@ const ModalCreateName = (prop) => {
 	const [name, setName] = useState("");
 	const checkToken = setLocal("token");
 	const checkName = setLocal("name");
-	const url = `${process.env.REACT_APP_LOFI_URL}/rest/message/dk-ten`;
+	// const url = `${process.env.REACT_APP_LOFI_URL}/rest/message/dk-ten`;
+	const url = `https://lofi-chill-chatting.herokuapp.com/rest/message/dk-ten`;
 	console.log(url);
 	const handelRegister = async () => {
 		try {
