@@ -5,12 +5,14 @@ import Sidebar from "./components/Admin/index";
 import ManagerUser from "./pages/ManagerUser/index";
 import ManagerStatistic from "./pages/Statistic/index";
 import "./App.scss";
+import Loading from "./common/Loading";
 function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Header />} />
 				<Route path="login" element={<Login />} />
+				<Route path="test" element={<Loading />} />
 				<Route path="admin" element={<Sidebar />}>
 					<Route path="ManagerUser" element={<ManagerUser />} />
 					<Route path="ManagerStatistic" element={<ManagerStatistic />} />

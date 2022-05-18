@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
 .signin-container {
 	width: 100%;
 	min-height: 100vh;
@@ -70,10 +71,11 @@
 .signup-label {
 	font-size: 16px;
 	color: #63676b;
-	font-weight: 500;
+	font-weight: 600;
 	margin-bottom: 10px;
 	display: inline-block;
 	cursor: pointer;
+	font-family: "Roboto", sans-serif;
 }
 .signup-input {
 	display: block;
@@ -112,6 +114,26 @@
 	box-shadow: 0 5px 10px 0 rgba(130, 201, 30, 0.5);
 	margin-top: 25px;
 	margin-bottom: 25px;
+	&:hover {
+		cursor: pointer;
+		animation: jelly 0.5s;
+	}
+
+	@keyframes jelly {
+		0%,
+		100% {
+			transform: scale(1, 1);
+		}
+		25% {
+			transform: scale(0.9, 1.1);
+		}
+		50% {
+			transform: scale(1.1, 0.9);
+		}
+		75% {
+			transform: scale(0.95, 1.05);
+		}
+	}
 }
 .signup-already {
 	text-align: center;
