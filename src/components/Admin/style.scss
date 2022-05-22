@@ -36,6 +36,21 @@
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+	.item-logOut {
+		padding: 10px 10px;
+		background-color: #f799a3;
+		display: flex;
+		align-items: center;
+		width: 100%;
+		gap: 10px;
+		justify-content: center;
+		border-radius: 8px;
+		font-size: 17px;
+		img {
+			width: 20px;
+			height: 20px;
+		}
+	}
 }
 .menuItem {
 	display: flex;

@@ -6,8 +6,10 @@ import { motion } from "framer-motion";
 import Logo from "../../assets/images/logo-icon.png";
 import Statistic from "../../assets/images/admin-statistic.png";
 import Users from "../../assets/images/admin-user.png";
+import Off from "../../assets/images/off.png";
 import "./style.scss";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import { removeLocal } from "../../LocalStorage/getLocal";
 
 const SidebarData = [
 	{
@@ -34,6 +36,14 @@ const Sidebar = () => {
 			left: "-60%",
 		},
 	};
+
+	const handleLogOut = () => {
+		removeLocal("name");
+		removeLocal("userName");
+		removeLocal("token");
+		window.location = "/";
+	};
+
 	return (
 		<div className="dashboard-admin">
 			<div className="AppGlass">
@@ -68,7 +78,12 @@ const Sidebar = () => {
 								</NavLink>
 							);
 						})}
-						<div className="menuItem"></div>
+						<div onClick={handleLogOut} className="menuItem ">
+							<div className="item-logOut">
+								<span>LOG OUT</span>
+								<img src={Off} alt="" srcset="" />
+							</div>
+						</div>
 					</div>
 				</motion.div>
 				<Outlet />

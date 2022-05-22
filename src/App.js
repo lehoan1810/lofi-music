@@ -16,6 +16,7 @@ function App() {
 				<Route path="admin" element={<Sidebar />}>
 					<Route path="ManagerUser" element={<ManagerUser />} />
 					<Route path="ManagerStatistic" element={<ManagerStatistic />} />
+					{/* <Route path="ManagerMess" element={<ManagerStatistic />} /> */}
 				</Route>
 			</Routes>
 		</BrowserRouter>
