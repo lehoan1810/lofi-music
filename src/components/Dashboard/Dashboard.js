@@ -4,8 +4,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import { useDispatch, useSelector } from "react-redux";
+import { setLocal } from "../../LocalStorage/getLocal";
 import { changeMood, changeRain, changeVolume } from "../../redux/actions";
 import Message from "../Message";
+import ModalCreateName from "../../common/ModalCreateName/index";
 import "./style.scss";
 
 var stompClient = null;
@@ -24,6 +26,8 @@ const Dashboard = () => {
 	const [openMood, setOpenMood] = useState(false);
 	const [openChat, setOpenChat] = useState(false);
 	const [openFocus, setOpenFocus] = useState(false);
+	const [openModal, setOpenModal] = useState(false);
+
 	const [cityTraffic, setCityTraffic] = useState(0);
 	const [River, setRiver] = useState(0);
 	const [Rain, setRain] = useState(0);
@@ -34,6 +38,8 @@ const Dashboard = () => {
 	const [listMessage, setListMessage] = useState([]);
 
 	const BASE_URL = process.env.REACT_APP_LOFI_URL;
+	const getSessonName = setLocal("name");
+	console.log(getSessonName);
 
 	const url = `${BASE_URL}/rest/message/CHANNEL_1`;
 	useEffect(() => {
@@ -82,9 +88,15 @@ const Dashboard = () => {
 		// else if (e.target.value === 0) dispatch(changeRainStatus("rain", 0));
 		// setCityRain(e.target.value);
 	};
+	const showHanleModal = () => {
+		setOpenModal(!openModal);
+	};
 
 	return (
 		<>
+			{openModal && (
+				<ModalCreateName openModal={openModal} setOpenModal={setOpenModal} />
+			)}
 			{!openMood && (
 				<div>
 					<ReactAudioPlayer
@@ -252,23 +264,44 @@ const Dashboard = () => {
 					)}
 					<div className={`icon ` + (openChat && "active")}>
 						<i
-							onClick={openChatHandler}
+							onClick={getSessonName ? openChatHandler : showHanleModal}
 							className={
 								"bx bx-message-rounded-dots " + (openChat && "bx-tada")
 							}
 						></i>
 					</div>
-					{openChat && (
-						<Message
-							listMessage={listMessage}
-							openChatHandler={openChatHandler}
-						/>
-					)}
-					<div className={`icon ` + (openFocus && "active")}>
-						<i
-							onClick={openMoodHandler}
-							className={"bx bxs-calendar " + (openFocus && "bx-tada")}
-						></i>
+
+					{/* {getSessonName ? (
+						<div>
+							{openChat && (
+								<Message
+									listMessage={listMessage}
+									openChatHandler={openChatHandler}
+								/>
+							)}
+							<div className={`icon ` + (openFocus && "active")}>
+								<i
+									onClick={openMoodHandler}
+									className={"bx bxs-calendar " + (openFocus && "bx-tada")}
+								></i>
+							</div>
+						</div>
+					) : (
+						<ModalCreateName />
+					)} */}
+					<div>
+						{openChat && (
+							<Message
+								listMessage={listMessage}
+								openChatHandler={openChatHandler}
+							/>
+						)}
+						<div className={`icon ` + (openFocus && "active")}>
+							<i
+								onClick={openChatHandler}
+								className={"bx bxs-calendar " + (openFocus && "bx-tada")}
+							></i>
+						</div>
 					</div>
 				</div>
 			</div>

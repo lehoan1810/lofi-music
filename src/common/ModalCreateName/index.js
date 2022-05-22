@@ -33,12 +33,15 @@ const ModalCreateName = (prop) => {
 		<>
 			{openModal && (
 				<div className="overlay">
-					<div className="modal">
-						<h2 className="title-modal">Mời bạn nhập tên !</h2>
+					<div className="modals">
+						<h2 className="title-modals">Mời bạn nhập tên !</h2>
 						<div onClick={() => setOpenModal(false)} className="exit">
 							<img src={Exit} alt="" />
 						</div>
-						<div className="content">
+						<span className="err-title">
+							Bạn vui lòng nhập lớn hơn 6 ký tự (*)
+						</span>
+						<div className="contents">
 							<input
 								className="input-name"
 								type="text"
@@ -46,9 +49,7 @@ const ModalCreateName = (prop) => {
 								onChange={(e) => setName(e.target.value)}
 							/>
 						</div>
-						{setName && setName.length <= 6 && (
-							<span>bạn vui lòng nhập lớn hơn 6 ký tự</span>
-						)}
+
 						<span></span>
 						<div className="btn-create-name">
 							<button onClick={handelRegister}>Đăng ký</button>

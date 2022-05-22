@@ -81,14 +81,17 @@ const Header = () => {
 					</div>
 					<div className="btn-signUp">
 						<button>Sign up</button>
-					</div>
-					<div className="btn-login">
-						<button>Login</button>
 					</div> */}
+					<div className="btn-login">
+						<button>
+							<Link className="link-login" to="/login" href="">
+								Login
+							</Link>
+						</button>
+					</div>
 				</div>
 			</nav>
-			{/* <ModalCreateName openModal={openModal} setOpenModal={setOpenModal} /> */}
-			<SelectLogin openModal={openModal} setOpenModal={setOpenModal} />
+			<ModalCreateName openModal={openModal} setOpenModal={setOpenModal} />
 			<Container check={mode} />
 		</>
 	);

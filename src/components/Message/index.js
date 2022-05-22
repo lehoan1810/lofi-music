@@ -6,18 +6,21 @@ import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import InputEmoji from "react-input-emoji";
 import "./style.scss";
+import SkeletonChat from "../../common/SkeletonChat";
 
 const Message = (prop) => {
 	const { openChatHandler } = prop;
 	const [message, setMessage] = useState("");
 	const [listMessage, setListMessage] = useState([]);
 	const [chanel, setChanel] = useState("CHANNEL_1");
+	const [loading, setLoading] = useState(true);
 
 	const nameStorage = setLocal("name");
 	const tokenStorage = setLocal("token");
 
 	const urls = `${process.env.REACT_APP_LOFI_URL}/rest/message/${chanel}`;
 	const SOCKET_URL = `${process.env.REACT_APP_LOFI_URL}/ws`;
+	console.log("show .env: ", urls);
 
 	var sock = new SockJS(SOCKET_URL);
 	let stompClient = Stomp.over(sock);
@@ -31,6 +34,7 @@ const Message = (prop) => {
 			.then((res) => {
 				setListMessage(res.data);
 				console.log(res.data);
+				setLoading(false);
 			})
 			.catch((err) => console.log(err));
 
@@ -41,7 +45,7 @@ const Message = (prop) => {
 				sub.current = stompClient.subscribe(`/message/${chanel}`, function (m) {
 					const m2 = JSON.parse(m.body);
 					setListMessage(m2);
-					console.log(m2);
+					console.log("show m2: ", m2);
 				});
 			},
 			function (error) {
@@ -85,6 +89,18 @@ const Message = (prop) => {
 		if (e.keyCode === 13) sendMessage();
 	};
 
+	// scroll message back to bottom
+	const messageRef = useRef();
+	useEffect(() => {
+		if (messageRef.current) {
+			messageRef.current.scrollIntoView({
+				behavior: "smooth",
+				block: "end",
+				inline: "nearest",
+			});
+		}
+	}, [listMessage]);
+
 	return (
 		<div className="form-message">
 			<div className="message-header">
@@ -111,20 +127,22 @@ const Message = (prop) => {
 				</div>
 			</div>
 			<div className="message-content">
-				<div className="guest">
+				{loading && <SkeletonChat />}
+				{/* {loading ? (
+					<div ref={messageRef} className="guest">
+						<SkeletonChat />
+					</div>
+				) : ( */}
+				<div ref={messageRef} className="guest">
 					{listMessage &&
 						listMessage.map((item, id) => (
 							<div key={id} className="message-guest">
-								{/* <img
-									className="message-guest-image"
-									src="https://i.pinimg.com/736x/aa/a3/94/aaa39465e439b4bf4f7e20ecad105856.jpg"
-									alt=""
-								/> */}
 								<span className="guest-name">{item.guestName}</span>
 								<span className="guest-content">{item.message}</span>
 							</div>
 						))}
 				</div>
+				{/* )} */}
 			</div>
 			<div className="message-send">
 				<input
@@ -134,12 +152,6 @@ const Message = (prop) => {
 					placeholder="Write a message..."
 					onKeyUp={handleKeyUp}
 				/>
-				{/* <InputEmoji
-					value={message}
-					onChange={(e) => setMessage(e.target.value)}
-					onKeyUp={handleKeyUp}
-					placeholder="Write a message..."
-				/> */}
 				<i className="bx bx-wink-smile"></i>
 				<i onClick={sendMessage} className="bx bx-send"></i>
 			</div>

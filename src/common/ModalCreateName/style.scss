@@ -5,9 +5,9 @@
 	position: relative;
 	z-index: 10000;
 }
-.modal {
+.modals {
 	width: 400px;
-	height: 220px;
+	height: 250px;
 	background-color: white;
 	position: absolute;
 	top: 50%;
@@ -16,13 +16,20 @@
 	padding: 20px;
 	border-radius: 10px;
 	transition: all 0.2s ease-in-out;
-	.title-modal {
-		text-align: center;
-		font-size: 30px;
+	.err-title {
+		font-size: 13px;
+		color: red;
 	}
-	.content {
+	.title-modals {
 		text-align: center;
-		margin-top: 30px;
+		font-size: 35px;
+		font-weight: 600;
+		font-family: "Macondo", cursive;
+		margin-bottom: 30px;
+	}
+	.contents {
+		text-align: center;
+		margin-top: 15px;
 		.input-name {
 			border: 1px solid #333;
 			padding: 10px;

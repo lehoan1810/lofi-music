@@ -133,16 +133,21 @@
 			opacity: 0.8;
 		}
 	}
-	.btn-login > button {
+	.btn-login button {
 		min-width: unset;
-		color: #fff;
 		background-color: transparent;
-		border: 0;
+		// background-color: #333;
+		// border: 0;
+		border: 2px solid white;
 		font-weight: 700;
 		font-size: 18px;
-		padding: 18px;
+		padding: 5px 10px;
+		border-radius: 30px;
 		&:hover {
 			opacity: 0.8;
+		}
+		.link-login {
+			color: white;
 		}
 	}
 }
