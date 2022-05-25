@@ -88,7 +88,7 @@ const ManagerUser = () => {
 
 									<td>
 										<div className="action-seen">
-											<button>Delete</button>
+											<button>Update</button>
 										</div>
 									</td>
 								</tr>

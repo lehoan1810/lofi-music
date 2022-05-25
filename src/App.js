@@ -6,6 +6,7 @@ import ManagerUser from "./pages/ManagerUser/index";
 import ManagerStatistic from "./pages/Statistic/index";
 import "./App.scss";
 import Loading from "./common/Loading";
+import ManagerMessage from "./pages/ManagerMessage";
 function App() {
 	return (
 		<BrowserRouter>
@@ -16,7 +17,7 @@ function App() {
 				<Route path="admin" element={<Sidebar />}>
 					<Route path="ManagerUser" element={<ManagerUser />} />
 					<Route path="ManagerStatistic" element={<ManagerStatistic />} />
-					{/* <Route path="ManagerMess" element={<ManagerStatistic />} /> */}
+					<Route path="ManagerMessage" element={<ManagerMessage />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

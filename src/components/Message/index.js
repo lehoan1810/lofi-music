@@ -3,72 +3,70 @@ import Exit from "../../assets/images/exit.png";
 import axios from "axios";
 import { setLocal } from "../../LocalStorage/getLocal";
 import SockJS from "sockjs-client";
-import Stomp from "stompjs";
-import InputEmoji from "react-input-emoji";
+// import Stomp from "stompjs";
+import { over } from "stompjs";
 import "./style.scss";
 import SkeletonChat from "../../common/SkeletonChat";
+import { useDispatch, useSelector } from "react-redux";
+import { appendMessage, getMessage } from "../../redux/actions/messageSocket";
 
+var stompClient = null;
 const Message = (prop) => {
+	const dispatch = useDispatch();
 	const { openChatHandler } = prop;
 	const [message, setMessage] = useState("");
-	const [listMessage, setListMessage] = useState([]);
 	const [chanel, setChanel] = useState("CHANNEL_1");
-	const [loading, setLoading] = useState(true);
 
 	const nameStorage = setLocal("name");
 	const tokenStorage = setLocal("token");
+	const MessageReducer = useSelector((state) => state.MessageReducer);
+	const { list } = MessageReducer;
+	console.log("show list current: ", list);
 
-	const urls = `${process.env.REACT_APP_LOFI_URL}/rest/message/${chanel}`;
 	const SOCKET_URL = `${process.env.REACT_APP_LOFI_URL}/ws`;
-	console.log("show .env: ", urls);
-
-	var sock = new SockJS(SOCKET_URL);
-	let stompClient = Stomp.over(sock);
-	var sub = useRef();
-
-	useEffect(() => {
-		const controller = new AbortController();
-		const signal = controller.signal;
-		axios
-			.get(urls, { signal: signal })
-			.then((res) => {
-				setListMessage(res.data);
-				console.log(res.data);
-				setLoading(false);
-			})
-			.catch((err) => console.log(err));
-
-		stompClient.debug = null;
-		stompClient.connect(
-			{},
-			function (frame) {
-				sub.current = stompClient.subscribe(`/message/${chanel}`, function (m) {
-					const m2 = JSON.parse(m.body);
-					setListMessage(m2);
-					console.log("show m2: ", m2);
-				});
-			},
-			function (error) {
-				console.log("connect error", error);
-			}
-		);
-		return () => {
-			controller.abort();
-		};
-	}, [chanel]);
-
 	const url = `${process.env.REACT_APP_LOFI_URL}/rest/message`;
 
+	var sub = useRef(chanel);
+
 	const changeChanel = (e) => {
-		sub.current.unsubscribe();
+		stompClient.unsubscribe();
+		sub.current = e.target.value;
+		console.log("show sub current: ", sub.current);
+		console.log("show e.targert.value: ", e.target.value);
 		setChanel(e.target.value);
-		console.log(e.target.value);
+		// onConnected();
+		// ConnectSocket();
+	};
+	useEffect(() => {
+		ConnectSocket();
+	}, [chanel]);
+
+	const ConnectSocket = () => {
+		let Sock = new SockJS(SOCKET_URL);
+		stompClient = over(Sock);
+		stompClient.connect({}, onConnected, onError);
+	};
+	const onConnected = () => {
+		console.log("chanel connect: ", chanel);
+		dispatch(getMessage(chanel));
+		stompClient.subscribe(`/message/${chanel}`, function (m) {
+			const m2 = JSON.parse(m.body);
+			console.log("test m2: ", m2);
+			console.log(chanel);
+			dispatch(appendMessage(m2));
+		});
+	};
+	const onError = (err) => {
+		console.log(err);
+	};
+	const inputMessage = (e) => {
+		setMessage(e.target.value);
 	};
 
 	const sendMessage = async () => {
 		setMessage("");
 		try {
-			axios
+			await axios
 				.post(url, {
 					message: message,
 					token: tokenStorage,
@@ -76,8 +74,7 @@ const Message = (prop) => {
 					channel: chanel,
 				})
 				.then((res) => {
-					console.log(message);
-					console.log("data", res.data);
+					console.log("post message: ", res.data);
 				})
 				.catch((err) => console.log("error", err));
 		} catch (error) {
@@ -89,7 +86,6 @@ const Message = (prop) => {
 		if (e.keyCode === 13) sendMessage();
 	};
 
-	// scroll message back to bottom
 	const messageRef = useRef();
 	useEffect(() => {
 		if (messageRef.current) {
@@ -99,7 +95,7 @@ const Message = (prop) => {
 				inline: "nearest",
 			});
 		}
-	}, [listMessage]);
+	}, [list]);
 
 	return (
 		<div className="form-message">
@@ -127,15 +123,10 @@ const Message = (prop) => {
 				</div>
 			</div>
 			<div className="message-content">
-				{loading && <SkeletonChat />}
-				{/* {loading ? (
-					<div ref={messageRef} className="guest">
-						<SkeletonChat />
-					</div>
-				) : ( */}
+				{list.length === 0 && <SkeletonChat />}
 				<div ref={messageRef} className="guest">
-					{listMessage &&
-						listMessage.map((item, id) => (
+					{list &&
+						list.map((item, id) => (
 							<div key={id} className="message-guest">
 								<span className="guest-name">{item.guestName}</span>
 								<span className="guest-content">{item.message}</span>
@@ -147,12 +138,12 @@ const Message = (prop) => {
 			<div className="message-send">
 				<input
 					value={message}
-					onChange={(e) => setMessage(e.target.value)}
+					onChange={(e) => inputMessage(e)}
 					type="text"
 					placeholder="Write a message..."
 					onKeyUp={handleKeyUp}
 				/>
-				<i className="bx bx-wink-smile"></i>
+				<i onClick={ConnectSocket} className="bx bx-wink-smile"></i>
 				<i onClick={sendMessage} className="bx bx-send"></i>
 			</div>
 		</div>

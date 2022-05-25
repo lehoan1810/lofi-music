@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-// import { UilSignOutAlt } from "@iconscout/react-unicons";
-// import { SidebarData } from "../Data/Data";
-// import { UilBars } from "@iconscout/react-unicons";
 import { motion } from "framer-motion";
 import Logo from "../../assets/images/logo-icon.png";
 import Statistic from "../../assets/images/admin-statistic.png";
 import Users from "../../assets/images/admin-user.png";
+import Mess from "../../assets/images/mess.png";
 import Off from "../../assets/images/off.png";
 import "./style.scss";
 import { Link, NavLink, Outlet } from "react-router-dom";
@@ -21,6 +19,11 @@ const SidebarData = [
 		icon: <img className="icon-dashboard" src={Statistic} alt="" />,
 		heading: "Statistic",
 		link: "/admin/ManagerStatistic",
+	},
+	{
+		icon: <img className="icon-dashboard" src={Mess} alt="" />,
+		heading: "Manager Message",
+		link: "/admin/ManagerMessage",
 	},
 ];
 const Sidebar = () => {
@@ -81,7 +84,7 @@ const Sidebar = () => {
 						<div onClick={handleLogOut} className="menuItem ">
 							<div className="item-logOut">
 								<span>LOG OUT</span>
-								<img src={Off} alt="" srcset="" />
+								<img src={Off} alt="" />
 							</div>
 						</div>
 					</div>
