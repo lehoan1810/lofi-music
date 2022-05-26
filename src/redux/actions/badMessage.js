@@ -4,6 +4,7 @@ import {
 	GET_BAD_MESSAGE,
 	LOADING,
 	POST_BAD_MESSAGE,
+	UPDATE_BAD_MESSAGE,
 } from "../constants/action.badMessage";
 
 export const badMessage = () => {
@@ -42,6 +43,26 @@ export const createBadWord = (payload) => {
 
 			dispatch({
 				type: POST_BAD_MESSAGE,
+				payload: res.data,
+				loading: false,
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	};
+};
+export const updateBadWord = (idBadWord, payload) => {
+	return async function (dispatch) {
+		try {
+			const res = await axios.put(
+				`${process.env.REACT_APP_LOFI_URL}/rest/admin/bad-word/${idBadWord}`,
+				{ badWord: payload },
+				{ headers: authHeader() }
+			);
+			console.log("action data: ", res.data);
+
+			dispatch({
+				type: UPDATE_BAD_MESSAGE,
 				payload: res.data,
 				loading: false,
 			});

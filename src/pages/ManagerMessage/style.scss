@@ -8,3 +8,39 @@
 		text-align: center;
 	}
 }
+.right-badword {
+	align-items: flex-start;
+	flex-direction: column;
+	flex: 5 1;
+	.bottom {
+		margin-bottom: 10px;
+	}
+	.add-badword {
+		padding: 10px;
+		background: rgba(255, 255, 255, 0.55);
+		backdrop-filter: blur(4.5px);
+		-webkit-backdrop-filter: blur(4.5px);
+		border-radius: 10px;
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		margin-bottom: 10px;
+		width: 40%;
+		display: flex;
+	}
+	.input-badword {
+		padding: 10px;
+		border: none;
+		border-radius: 5px;
+		margin-right: 10px;
+		width: 100%;
+		font-size: 16px;
+	}
+	.btn-badword {
+		padding: 7px 20px;
+		border: none;
+		border-radius: 5px;
+		box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+			rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+			rgba(0, 0, 0, 0.07) 0px 16px 16px;
+		background-color: white;
+	}
+}

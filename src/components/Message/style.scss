@@ -16,8 +16,14 @@
 }
 .guest {
 	&-name {
-		font-size: 12px;
+		font-size: 15px;
 		color: white;
-		font-weight: 600;
+		font-weight: 400;
+		display: block;
+		line-height: 20px;
+		p {
+			color: #cdcdcd;
+			display: inline;
+		}
 	}
 }

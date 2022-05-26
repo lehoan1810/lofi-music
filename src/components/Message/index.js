@@ -21,7 +21,6 @@ const Message = (prop) => {
 	const tokenStorage = setLocal("token");
 	const MessageReducer = useSelector((state) => state.MessageReducer);
 	const { list } = MessageReducer;
-	console.log("show list current: ", list);
 
 	const SOCKET_URL = `${process.env.REACT_APP_LOFI_URL}/ws`;
 	const url = `${process.env.REACT_APP_LOFI_URL}/rest/message`;
@@ -31,8 +30,6 @@ const Message = (prop) => {
 	const changeChanel = (e) => {
 		stompClient.unsubscribe();
 		sub.current = e.target.value;
-		console.log("show sub current: ", sub.current);
-		console.log("show e.targert.value: ", e.target.value);
 		setChanel(e.target.value);
 		// onConnected();
 		// ConnectSocket();
@@ -47,7 +44,6 @@ const Message = (prop) => {
 		stompClient.connect({}, onConnected, onError);
 	};
 	const onConnected = () => {
-		console.log("chanel connect: ", chanel);
 		dispatch(getMessage(chanel));
 		stompClient.subscribe(`/message/${chanel}`, function (m) {
 			const m2 = JSON.parse(m.body);
@@ -128,8 +124,9 @@ const Message = (prop) => {
 					{list &&
 						list.map((item, id) => (
 							<div key={id} className="message-guest">
-								<span className="guest-name">{item.guestName}</span>
-								<span className="guest-content">{item.message}</span>
+								<span className="guest-name">
+									<p>{item.guestName}</p> : {item.message}
+								</span>
 							</div>
 						))}
 				</div>

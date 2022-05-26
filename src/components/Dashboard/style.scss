@@ -237,9 +237,6 @@
 		}
 	}
 	&-guest {
-		display: flex;
-		align-items: center;
-		gap: 10px;
 		margin-top: 20px;
 		&-image {
 			width: 40px;
@@ -254,7 +251,7 @@
 			-moz-border-radius-bottomleft: 0;
 			border-radius: 11px;
 			border-bottom-left-radius: 0;
-			font-size: 14px;
+			font-size: 18px;
 			max-width: 200px;
 			color: #14141d;
 			word-wrap: break-word;

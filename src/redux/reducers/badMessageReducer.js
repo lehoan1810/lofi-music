@@ -20,8 +20,11 @@ const badMessageReducer = (state = INITIAL_STATE, action) => {
 			};
 		case UPDATE_BAD_MESSAGE:
 			return {
-				...state,
-				list: [...state.list, action.payload],
+				list: state.list.map((item) => {
+					if (item.id === action.payload.id) {
+						return { ...item, badWord: action.payload.badWord };
+					} else return item;
+				}),
 			};
 		default:
 			return state;

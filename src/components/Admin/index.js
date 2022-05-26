@@ -8,6 +8,7 @@ import Off from "../../assets/images/off.png";
 import "./style.scss";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { removeLocal } from "../../LocalStorage/getLocal";
+import ModalUpdate from "../../common/ModalUpdate";
 
 const SidebarData = [
 	{
@@ -30,6 +31,8 @@ const Sidebar = () => {
 	const [selected, setSelected] = useState(0);
 
 	const [expanded, setExpaned] = useState(true);
+
+	const [openModal, setOpenModal] = useState(false);
 
 	const sidebarVariants = {
 		true: {

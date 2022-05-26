@@ -70,6 +70,7 @@ const Container = (props) => {
 				</video>
 			</div>
 			<ButtonRain />
+
 			<Dashboard />
 			<Player />
 		</>
