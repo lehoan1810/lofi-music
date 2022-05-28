@@ -44,3 +44,24 @@
 		background-color: white;
 	}
 }
+.action-img-handel {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	img {
+		width: 35px;
+		height: 35px;
+		border-radius: 10px;
+		padding: 5px;
+		cursor: pointer;
+		transition: all 0.2s ease-in-out;
+		&:first-child:hover {
+			background-color: #46c4ff;
+		}
+		&:last-child:hover {
+			background-color: #f26762;
+		}
+	}
+}

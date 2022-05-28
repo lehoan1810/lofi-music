@@ -28,6 +28,7 @@
 		"react-redux": "^7.2.6",
 		"react-router-dom": "^6.2.1",
 		"react-scripts": "5.0.0",
+		"react-simple-star-rating": "^4.0.5",
 		"react-stomp": "^5.1.0",
 		"react-timer-hook": "^3.0.5",
 		"react-toastify": "^9.0.1",

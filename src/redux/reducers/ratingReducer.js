@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 	listRating: [],
 };
 
-const badMessageReducer = (state = INITIAL_STATE, action) => {
+const ratingReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case GET_RATING:
 			return {
@@ -22,4 +22,4 @@ const badMessageReducer = (state = INITIAL_STATE, action) => {
 	}
 };
 
-export default badMessageReducer;
+export default ratingReducer;

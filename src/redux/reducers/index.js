@@ -5,6 +5,9 @@ import moodReducer from "./moodReducer";
 import volumeReducer from "./volumeReducer";
 import badMessageReducer from "./badMessageReducer";
 import MessageReducer from "./messageReducer";
+import ratingReducer from "./ratingReducer";
+import statisticReducer from "./statisticReducer";
+import AddAdmin from "./adminReducer";
 
 export const rootReducer = combineReducers({
 	modeState: modeReducer,
@@ -13,4 +16,7 @@ export const rootReducer = combineReducers({
 	volumeState: volumeReducer,
 	badMessageState: badMessageReducer,
 	MessageReducer: MessageReducer,
+	ratingReducer: ratingReducer,
+	statisticReducer: statisticReducer,
+	AddAdmin: AddAdmin,
 });

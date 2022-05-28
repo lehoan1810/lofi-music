@@ -260,3 +260,13 @@ $radius: 0.2rem;
 	gap: 10px;
 	justify-content: space-between;
 }
+.create-admin {
+	width: 30px;
+	height: 30px;
+}
+.admin-flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+}

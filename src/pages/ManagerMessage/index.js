@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { badMessage, createBadWord } from "../../redux/actions/badMessage";
+import {
+	badMessage,
+	createBadWord,
+	deleteBadWord,
+} from "../../redux/actions/badMessage";
 import Bad from "../../assets/images/bad.png";
 import "./style.scss";
 import ModalUpdate from "../../common/ModalUpdate";
@@ -8,11 +12,15 @@ import Modal from "react-modal/lib/components/Modal";
 import Card1 from "../../assets/images/card1.png";
 import Card2 from "../../assets/images/card2.png";
 import Card3 from "../../assets/images/card3.png";
-import Panda from "../../assets/images/Panda.png";
+import Delete from "../../assets/images/delete.png";
+import Update from "../../assets/images/update.png";
+import LoadingTable from "../../common/LoadingTable";
+import ModalDelete from "../../common/ModalDelete";
 
 const ManagerMessage = () => {
 	const dispatch = useDispatch();
 	const [openModal, setOpenModal] = useState(false);
+	const [openModalDelete, setOpenModalDelete] = useState(false);
 	const [badWord, setBadWord] = useState("");
 	const [getId, setGetId] = useState("");
 	const [getWord, setGetWord] = useState("");
@@ -60,6 +68,7 @@ const ManagerMessage = () => {
 						</div>
 					</div>
 				</div>
+
 				<div className="add-badword">
 					<input
 						className="input-badword"
@@ -88,6 +97,13 @@ const ManagerMessage = () => {
 								</tr>
 							</thead>
 							<tbody>
+								{listDataBadWord.list.length === 0 && (
+									<tr>
+										<td colSpan="4">
+											<LoadingTable />
+										</td>
+									</tr>
+								)}
 								{listDataBadWord.list &&
 									listDataBadWord.list.map((item, id) => (
 										<tr key={id}>
@@ -103,15 +119,24 @@ const ManagerMessage = () => {
 											</td>
 
 											<td>
-												<div
-													onClick={() => {
-														setOpenModal(true);
-														setGetId(item.id);
-														setGetWord(item.badWord);
-													}}
-													className="action-seen"
-												>
-													<button>Update</button>
+												<div className="action-img-handel">
+													<img
+														onClick={() => {
+															setOpenModal(true);
+															setGetId(item.id);
+															setGetWord(item.badWord);
+														}}
+														src={Update}
+														alt=""
+													/>
+													<img
+														onClick={() => {
+															setOpenModalDelete(true);
+															setGetId(item.id);
+														}}
+														src={Delete}
+														alt=""
+													/>
 												</div>
 											</td>
 										</tr>
@@ -139,10 +164,26 @@ const ManagerMessage = () => {
 					<ModalUpdate
 						wordBad={getWord}
 						id={getId}
-						// dataProduct={id}
-						// data={getIdProduct}
 						setModalIsOpen={setOpenModal}
 					/>
+				</Modal>
+				<Modal
+					isOpen={openModalDelete}
+					ariaHideApp={false}
+					onRequestClose={() => setOpenModalDelete(false)}
+					style={{
+						overlay: {
+							backgroundColor: "rgba(0,0,0,0.4)",
+						},
+						content: {
+							width: "20rem",
+							margin: "auto",
+							height: "10rem",
+							borderRadius: "10px",
+						},
+					}}
+				>
+					<ModalDelete id={getId} setModalIsOpen={setOpenModalDelete} />
 				</Modal>
 			</div>
 		</>
