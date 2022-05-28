@@ -16,6 +16,7 @@ import Delete from "../../assets/images/delete.png";
 import Update from "../../assets/images/update.png";
 import LoadingTable from "../../common/LoadingTable";
 import ModalDelete from "../../common/ModalDelete";
+import { getListStatistic } from "../../redux/actions/statistic";
 
 const ManagerMessage = () => {
 	const dispatch = useDispatch();
@@ -26,9 +27,11 @@ const ManagerMessage = () => {
 	const [getWord, setGetWord] = useState("");
 
 	const listDataBadWord = useSelector((state) => state.badMessageState);
+	const listMessage = useSelector((state) => state.statisticReducer);
 
 	useEffect(() => {
 		dispatch(badMessage());
+		dispatch(getListStatistic());
 	}, []);
 
 	const createBadMessage = () => {
@@ -41,11 +44,20 @@ const ManagerMessage = () => {
 			<div className="right-badword">
 				<div className="menu-card bottom">
 					<div className="card-items">
-						<span className="card-items-title">Total Admin</span>
+						<span className="card-items-title">Total Message Today</span>
 						<div className="card-item">
 							<img src={Card1} alt="" />
 							<div className="card-data">
-								<span>+10</span>
+								<span>+{listMessage.listStatistic.totalMessagesToday}</span>
+							</div>
+						</div>
+					</div>
+					<div className="card-items">
+						<span className="card-items-title">Total Message Month</span>
+						<div className="card-item">
+							<img src={Card3} alt="" />
+							<div className="card-data">
+								<span>+{listMessage.listStatistic.totalMessageThisMonth}</span>
 							</div>
 						</div>
 					</div>
@@ -55,15 +67,6 @@ const ManagerMessage = () => {
 							<img src={Card2} alt="" />
 							<div className="card-data">
 								<span>{listDataBadWord.list.length}</span>
-							</div>
-						</div>
-					</div>
-					<div className="card-items">
-						<span className="card-items-title">Total Invoice</span>
-						<div className="card-item">
-							<img src={Card3} alt="" />
-							<div className="card-data">
-								<span>+20</span>
 							</div>
 						</div>
 					</div>
@@ -176,9 +179,9 @@ const ManagerMessage = () => {
 							backgroundColor: "rgba(0,0,0,0.4)",
 						},
 						content: {
-							width: "20rem",
+							width: "25rem",
 							margin: "auto",
-							height: "10rem",
+							height: "12rem",
 							borderRadius: "10px",
 						},
 					}}

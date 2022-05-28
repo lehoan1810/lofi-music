@@ -6,8 +6,6 @@ import "./style.scss";
 
 const ModalUpdate = (prop) => {
 	const { id, wordBad, setModalIsOpen } = prop;
-	console.log(id);
-	console.log("show word: ", wordBad);
 	const [word, setWord] = useState(wordBad);
 	const dispatch = useDispatch();
 

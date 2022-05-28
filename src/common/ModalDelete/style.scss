@@ -2,10 +2,20 @@
 	margin-top: 20px;
 	display: flex;
 	justify-content: space-between;
+	gap: 20px;
 	button {
-		padding: 10px 30px;
+		padding: 10px 40px;
 		border: none;
-		border-radius: 10px;
+
+		border-radius: 7px;
+		font-size: 17px;
+		color: white;
+		&:first-child {
+			background-color: rgb(235, 98, 77);
+		}
+		&:last-child {
+			background-color: rgb(55, 172, 235);
+		}
 	}
 }
 .modal-center {
@@ -13,4 +23,7 @@
 	align-items: center;
 	justify-content: center;
 	height: 100%;
+}
+.title-modal {
+	font-size: 20px;
 }

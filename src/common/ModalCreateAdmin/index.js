@@ -13,7 +13,6 @@ const ModalCreateAdmin = (prop) => {
 
 	const handelUpdate = () => {
 		dispatch(createAdmin(user, userName, password));
-
 		setModalIsOpen(false);
 	};
 

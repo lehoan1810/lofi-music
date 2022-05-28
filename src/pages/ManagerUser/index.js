@@ -18,7 +18,7 @@ const ManagerUser = () => {
 	const [openModal, setOpenModal] = useState(false);
 	const listDataAdmin = useSelector((state) => state.AddAdmin);
 	const listMessage = useSelector((state) => state.statisticReducer);
-	console.log("show: ", listMessage);
+	console.log("show listMessage: ", listMessage);
 
 	useEffect(() => {
 		dispatch(getListAdmin());

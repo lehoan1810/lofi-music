@@ -1,8 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
-import authHeader from "../../sevices";
-import { badMessage, createBadWord } from "../../redux/actions/badMessage";
+import { Rating } from "react-simple-star-rating";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.scss";
 import { getListStatistic } from "../../redux/actions/statistic";
@@ -22,23 +20,10 @@ const ManagerStatistic = () => {
 				(a) => a.count
 			);
 			setListStatisTic(result);
-			console.log(result);
 		}
 	}, [listData]);
 
-	const {
-		evaluateScore,
-		statisticMessageForThePastMonth,
-		totalMessageThisMonth,
-		totalMessagesToday,
-	} = listData.listStatistic;
-	console.log(
-		"show: ",
-		evaluateScore,
-		statisticMessageForThePastMonth,
-		totalMessageThisMonth,
-		totalMessagesToday
-	);
+	const overallScore = listData.listStatistic.evaluateScore;
 
 	const guestOption = {
 		stroke: {
@@ -51,15 +36,30 @@ const ManagerStatistic = () => {
 			data: listStatistic,
 		},
 	];
+
 	return (
 		<div className="right-content">
-			<div className="custom-chart">
-				<Chart
-					type="line"
-					series={guestSeries}
-					options={guestOption}
-					width={600}
-				/>
+			<div className="statistic-form">
+				<div className="custom-chart">
+					<h1 className="title-statistic">Chart Message Month!</h1>
+
+					<Chart
+						type="line"
+						series={guestSeries}
+						options={guestOption}
+						width={600}
+					/>
+				</div>
+				<div className="custom-rating">
+					<h1 className="title-statistic">Average Rating!</h1>
+
+					<Rating
+						showTooltip
+						allowHalfIcon
+						readonly
+						initialValue={overallScore ? overallScore.overallScore : 0}
+					/>
+				</div>
 			</div>
 		</div>
 	);

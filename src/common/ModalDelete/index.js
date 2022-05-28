@@ -13,7 +13,7 @@ const ModalDelete = (prop) => {
 	return (
 		<div className="modal-center">
 			<div className="from-update">
-				<span>Bạn có muốn xóa từ này không ?</span>
+				<span className="title-modal">Bạn có muốn xóa từ này không ?</span>
 
 				<div className="handel-delete">
 					<button
