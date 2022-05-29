@@ -3,22 +3,24 @@ import Exit from "../../assets/images/exit.png";
 import axios from "axios";
 import "./style.scss";
 import { getLocal, setLocal } from "../../LocalStorage/getLocal";
+import { toast } from "react-toastify";
 
 const ModalCreateName = (prop) => {
 	const { openModal, setOpenModal } = prop;
 	const [name, setName] = useState("");
 	const checkToken = setLocal("token");
 	const checkName = setLocal("name");
-	// const url = `${process.env.REACT_APP_LOFI_URL}/rest/message/dk-ten`;
 	const url = `https://lofi-chill-chatting.herokuapp.com/rest/message/dk-ten`;
 	const handelRegister = async () => {
 		try {
 			const res = await axios.post(url, { name: name });
 			getLocal("token", res.data.token);
 			getLocal("name", res.data.name);
+			toast.success("Tạo thành công !");
 			window.location.reload();
 		} catch (error) {
 			console.error(error.message);
+			toast.error("Vui lòng nhập lớn hơn 6 ký tự !");
 		}
 	};
 

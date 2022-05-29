@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import authHeader from "../../sevices";
 import { GET_RATING, POST_RATING } from "../constants/actionRating";
 export const createRating = (payload) => {
@@ -9,7 +10,10 @@ export const createRating = (payload) => {
 				{ badWord: payload },
 				{ headers: authHeader() }
 			);
-			console.log("action data: ", res.data);
+			toast.success("Đánh giá thành công !", {
+				autoClose: 900,
+				hideProgressBar: true,
+			});
 
 			dispatch({
 				type: POST_RATING,
@@ -18,6 +22,10 @@ export const createRating = (payload) => {
 			});
 		} catch (err) {
 			console.log(err);
+			toast.error("Đánh giá thất bại !", {
+				autoClose: 900,
+				hideProgressBar: true,
+			});
 		}
 	};
 };

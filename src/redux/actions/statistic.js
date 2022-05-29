@@ -9,7 +9,6 @@ export const getListStatistic = () => {
 				`${process.env.REACT_APP_LOFI_URL}/rest/admin/statistic`,
 				{ headers: authHeader() }
 			);
-			console.log("sction data: ", res.data);
 
 			dispatch({
 				type: GET_STATISTIC,

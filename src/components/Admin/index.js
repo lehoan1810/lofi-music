@@ -32,8 +32,6 @@ const Sidebar = () => {
 
 	const [expanded, setExpaned] = useState(true);
 
-	const [openModal, setOpenModal] = useState(false);
-
 	const sidebarVariants = {
 		true: {
 			left: "0",
@@ -47,6 +45,7 @@ const Sidebar = () => {
 		removeLocal("name");
 		removeLocal("userName");
 		removeLocal("token");
+		removeLocal("tokenAdmin");
 		window.location = "/";
 	};
 

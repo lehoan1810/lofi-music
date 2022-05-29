@@ -7,7 +7,10 @@ import {
 	DELETE_BAD_MESSAGE,
 	UPDATE_BAD_MESSAGE,
 } from "../constants/action.badMessage";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+toast.configure();
 export const badMessage = () => {
 	return async function (dispatch) {
 		dispatch({
@@ -41,6 +44,10 @@ export const createBadWord = (payload) => {
 				{ headers: authHeader() }
 			);
 			console.log("sction data: ", res.data);
+			toast.success("Tạo thành công !", {
+				autoClose: 900,
+				hideProgressBar: true,
+			});
 
 			dispatch({
 				type: POST_BAD_MESSAGE,
@@ -49,6 +56,10 @@ export const createBadWord = (payload) => {
 			});
 		} catch (err) {
 			console.log(err);
+			toast.error("Bạn nhập ký tự quá ngắn !", {
+				autoClose: 900,
+				hideProgressBar: true,
+			});
 		}
 	};
 };
@@ -60,7 +71,10 @@ export const updateBadWord = (idBadWord, payload) => {
 				{ badWord: payload },
 				{ headers: authHeader() }
 			);
-			console.log("action data: ", res.data);
+			toast.success("Cập nhập thành công !", {
+				autoClose: 900,
+				hideProgressBar: true,
+			});
 
 			dispatch({
 				type: UPDATE_BAD_MESSAGE,
@@ -69,6 +83,10 @@ export const updateBadWord = (idBadWord, payload) => {
 			});
 		} catch (err) {
 			console.log(err);
+			toast.error("Cập nhập thất bại !", {
+				autoClose: 900,
+				hideProgressBar: true,
+			});
 		}
 	};
 };
@@ -79,7 +97,10 @@ export const deleteBadWord = (idBadWord) => {
 				`${process.env.REACT_APP_LOFI_URL}/rest/admin/bad-word/${idBadWord}`,
 				{ headers: authHeader() }
 			);
-			console.log("action data: ", res.data);
+			toast.success("Xóa thành công !", {
+				autoClose: 900,
+				hideProgressBar: true,
+			});
 
 			dispatch({
 				type: DELETE_BAD_MESSAGE,
@@ -88,6 +109,7 @@ export const deleteBadWord = (idBadWord) => {
 			});
 		} catch (err) {
 			console.log(err);
+			toast.error("Xóa thất bại !");
 		}
 	};
 };

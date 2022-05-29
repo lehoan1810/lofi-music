@@ -47,8 +47,6 @@ const Message = (prop) => {
 		dispatch(getMessage(chanel));
 		stompClient.subscribe(`/message/${chanel}`, function (m) {
 			const m2 = JSON.parse(m.body);
-			console.log("test m2: ", m2);
-			console.log(chanel);
 			dispatch(appendMessage(m2));
 		});
 	};

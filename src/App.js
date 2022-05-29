@@ -7,6 +7,7 @@ import ManagerStatistic from "./pages/Statistic/index";
 import "./App.scss";
 import Loading from "./common/Loading";
 import ManagerMessage from "./pages/ManagerMessage";
+
 function App() {
 	return (
 		<BrowserRouter>

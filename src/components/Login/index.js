@@ -25,13 +25,21 @@ const Login = () => {
 			});
 			setLoading(false);
 			console.log(response.data);
-			toast("Đăng nhập thành công !");
+
 			getLocal("userName", userName);
-			getLocal("token", response.data.accessToken);
+			getLocal("tokenAdmin", response.data.accessToken);
+			toast.success("Đăng nhập thành công !", {
+				autoClose: 900,
+				hideProgressBar: true,
+			});
 			navigate("/admin/ManagerUser");
 		} catch (error) {
 			console.error(error);
 			setLoading(false);
+			toast.success("Đăng nhập thất bại !", {
+				autoClose: 900,
+				hideProgressBar: true,
+			});
 		}
 	};
 	return (
