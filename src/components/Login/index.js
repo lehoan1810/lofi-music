@@ -52,7 +52,7 @@ const Login = () => {
 							<img src={Home} alt="" />
 						</Link>
 					</div>
-					<h1 className="signup-heading">Sign up</h1>
+					<h1 className="signup-heading">LOG IN</h1>
 					<div className="signup-or">
 						<span>Or</span>
 					</div>

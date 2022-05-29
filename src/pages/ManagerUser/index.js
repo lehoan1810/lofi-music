@@ -44,7 +44,9 @@ const ManagerUser = () => {
 					</div>
 				</div>
 				<div className="card-items">
-					<span className="card-items-title">Total Message today</span>
+					<div className="admin-flex">
+						<span className="card-items-title">Total Message today</span>
+					</div>
 					<div className="card-item">
 						<img src={Card2} alt="" />
 						<div className="card-data">
@@ -53,7 +55,9 @@ const ManagerUser = () => {
 					</div>
 				</div>
 				<div className="card-items">
-					<span className="card-items-title">Total Invoice</span>
+					<div className="admin-flex">
+						<span className="card-items-title">Total Invoice</span>
+					</div>
 					<div className="card-item">
 						<img src={Card3} alt="" />
 						<div className="card-data">

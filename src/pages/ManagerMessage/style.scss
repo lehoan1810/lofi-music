@@ -3,7 +3,9 @@
 	height: 30px;
 }
 .table-bad {
-	width: 50%;
+	// width: 50%;
+	gap: 60px;
+
 	td {
 		text-align: center;
 	}
@@ -16,15 +18,15 @@
 		margin-bottom: 10px;
 	}
 	.add-badword {
-		padding: 10px;
-		background: rgba(255, 255, 255, 0.55);
-		backdrop-filter: blur(4.5px);
-		-webkit-backdrop-filter: blur(4.5px);
-		border-radius: 10px;
-		border: 1px solid rgba(255, 255, 255, 0.18);
+		// padding: 10px;
+
 		margin-bottom: 10px;
-		width: 40%;
+		width: 50%;
 		display: flex;
+		img {
+			width: 25px;
+			height: 25px;
+		}
 	}
 	.input-badword {
 		padding: 10px;
@@ -35,19 +37,26 @@
 		font-size: 16px;
 	}
 	.btn-badword {
-		padding: 7px 20px;
+		margin-top: 20px;
+		padding: 10px 10px;
 		border: none;
-		border-radius: 5px;
+		border-radius: 7px;
 		box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
 			rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
 			rgba(0, 0, 0, 0.07) 0px 16px 16px;
-		background-color: white;
+		background-color: #1ad0f0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		gap: 10px;
 	}
 }
 .action-img-handel {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: center;
+	gap: 20px;
 	align-items: center;
 
 	img {
@@ -64,4 +73,7 @@
 			background-color: #f26762;
 		}
 	}
+}
+.img-3d-message {
+	width: 250px;
 }

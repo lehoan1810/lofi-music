@@ -105,6 +105,7 @@
 			cursor: pointer;
 		}
 	}
+
 	.btn-share > button {
 		margin: 0 16px;
 		font-size: 12px;
@@ -136,8 +137,7 @@
 	.btn-login button {
 		min-width: unset;
 		background-color: transparent;
-		// background-color: #333;
-		// border: 0;
+		margin-left: 20px;
 		border: 2px solid white;
 		font-weight: 700;
 		font-size: 18px;
@@ -149,6 +149,47 @@
 		.link-login {
 			color: white;
 		}
+	}
+}
+.btn-rating {
+	margin-left: 20px;
+	border-radius: 8px;
+	padding: 7px 30px;
+	background: linear-gradient(
+		269.36deg,
+		rgba(225, 134, 96, 0.9) 23.92%,
+		rgba(244, 202, 93, 0.9) 101.14%
+	);
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 14px;
+	gap: 15px;
+	cursor: pointer;
+	.icon-rating {
+		width: 25px;
+		height: 25px;
+	}
+}
+.btn-rating:hover {
+	cursor: pointer;
+	animation: jelly 0.5s;
+}
+
+@keyframes jelly {
+	0%,
+	100% {
+		transform: scale(1, 1);
+	}
+	25% {
+		transform: scale(0.9, 1.1);
+	}
+	50% {
+		transform: scale(1.1, 0.9);
+	}
+	75% {
+		transform: scale(0.95, 1.05);
 	}
 }
 @media screen and (min-width: 1024px) {

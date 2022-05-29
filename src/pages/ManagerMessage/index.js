@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-	badMessage,
-	createBadWord,
-	deleteBadWord,
-} from "../../redux/actions/badMessage";
+import { badMessage } from "../../redux/actions/badMessage";
 import Bad from "../../assets/images/bad.png";
 import "./style.scss";
 import ModalUpdate from "../../common/ModalUpdate";
 import Modal from "react-modal/lib/components/Modal";
-import Card1 from "../../assets/images/card1.png";
+import Dog from "../../assets/images/Dog.png";
 import Card2 from "../../assets/images/card2.png";
-import Card3 from "../../assets/images/card3.png";
+import Ban from "../../assets/images/ban.png";
+import Plus from "../../assets/images/Plus.png";
 import Delete from "../../assets/images/delete.png";
 import Update from "../../assets/images/update.png";
 import LoadingTable from "../../common/LoadingTable";
 import ModalDelete from "../../common/ModalDelete";
 import { getListStatistic } from "../../redux/actions/statistic";
+import ModalAdd from "../../common/ModalAdd";
 
 const ManagerMessage = () => {
 	const dispatch = useDispatch();
 	const [openModal, setOpenModal] = useState(false);
 	const [openModalDelete, setOpenModalDelete] = useState(false);
-	const [badWord, setBadWord] = useState("");
+	const [openModalAdd, setOpenModalAdd] = useState(false);
+
 	const [getId, setGetId] = useState("");
 	const [getWord, setGetWord] = useState("");
 
@@ -35,8 +34,9 @@ const ManagerMessage = () => {
 	}, []);
 
 	const createBadMessage = () => {
-		dispatch(createBadWord(badWord));
-		setBadWord("");
+		setOpenModalAdd(true);
+		// dispatch(createBadWord(badWord));
+		// setBadWord("");
 	};
 
 	return (
@@ -46,7 +46,7 @@ const ManagerMessage = () => {
 					<div className="card-items">
 						<span className="card-items-title">Total Message Today</span>
 						<div className="card-item">
-							<img src={Card1} alt="" />
+							<img src={Card2} alt="" />
 							<div className="card-data">
 								<span>+{listMessage.listStatistic.totalMessagesToday}</span>
 							</div>
@@ -55,7 +55,7 @@ const ManagerMessage = () => {
 					<div className="card-items">
 						<span className="card-items-title">Total Message Month</span>
 						<div className="card-item">
-							<img src={Card3} alt="" />
+							<img src={Card2} alt="" />
 							<div className="card-data">
 								<span>+{listMessage.listStatistic.totalMessageThisMonth}</span>
 							</div>
@@ -64,28 +64,19 @@ const ManagerMessage = () => {
 					<div className="card-items">
 						<span className="card-items-title">Total Bad Word</span>
 						<div className="card-item">
-							<img src={Card2} alt="" />
+							<img src={Ban} alt="" />
 							<div className="card-data">
-								<span>{listDataBadWord.list.length}</span>
+								<span>+{listDataBadWord.list.length}</span>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div className="add-badword">
-					<input
-						className="input-badword"
-						type="text"
-						value={badWord}
-						onChange={(e) => setBadWord(e.target.value)}
-					/>
-					<button
-						className="btn-badword"
-						type="button"
-						onClick={createBadMessage}
-					>
-						Add
-					</button>
+					<div className="btn-badword" type="button" onClick={createBadMessage}>
+						<img src={Plus} alt="" srcset="" />
+						<span>Add</span>
+					</div>
 				</div>
 
 				<div className="flex-3d table-bad">
@@ -147,7 +138,11 @@ const ManagerMessage = () => {
 							</tbody>
 						</table>
 					</div>
+					<div className="img-3d-message">
+						<img src={Dog} alt="" />
+					</div>
 				</div>
+
 				<Modal
 					isOpen={openModal}
 					ariaHideApp={false}
@@ -187,6 +182,24 @@ const ManagerMessage = () => {
 					}}
 				>
 					<ModalDelete id={getId} setModalIsOpen={setOpenModalDelete} />
+				</Modal>
+				<Modal
+					isOpen={openModalAdd}
+					ariaHideApp={false}
+					onRequestClose={() => setOpenModalAdd(false)}
+					style={{
+						overlay: {
+							backgroundColor: "rgba(0,0,0,0.4)",
+						},
+						content: {
+							width: "25rem",
+							margin: "auto",
+							height: "15rem",
+							borderRadius: "10px",
+						},
+					}}
+				>
+					<ModalAdd setModalIsOpen={setOpenModalAdd} />
 				</Modal>
 			</div>
 		</>

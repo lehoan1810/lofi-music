@@ -5,10 +5,13 @@ import Statistic from "../../assets/images/admin-statistic.png";
 import Users from "../../assets/images/admin-user.png";
 import Mess from "../../assets/images/mess.png";
 import Off from "../../assets/images/off.png";
+import Password from "../../assets/images/Password.png";
 import "./style.scss";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { removeLocal } from "../../LocalStorage/getLocal";
 import ModalUpdate from "../../common/ModalUpdate";
+import ModalChangePassword from "../../common/ModalChangePassword";
+import Modal from "react-modal/lib/components/Modal";
 
 const SidebarData = [
 	{
@@ -31,6 +34,8 @@ const Sidebar = () => {
 	const [selected, setSelected] = useState(0);
 
 	const [expanded, setExpaned] = useState(true);
+
+	const [openModal, setOpenModal] = useState(false);
 
 	const sidebarVariants = {
 		true: {
@@ -83,16 +88,43 @@ const Sidebar = () => {
 								</NavLink>
 							);
 						})}
-						<div onClick={handleLogOut} className="menuItem ">
-							<div className="item-logOut">
-								<span>LOG OUT</span>
-								<img src={Off} alt="" />
+
+						<div className="menuItem flex-column ">
+							<div onClick={() => setOpenModal(true)}>
+								<div className="item-logOut">
+									<img className="icon-dashboard" src={Password} alt="" />
+									<span>Change Password</span>
+								</div>
+							</div>
+							<div onClick={handleLogOut}>
+								<div className="item-logOut">
+									<img src={Off} alt="" />
+									<span>LOG OUT</span>
+								</div>
 							</div>
 						</div>
 					</div>
 				</motion.div>
 				<Outlet />
 			</div>
+			<Modal
+				isOpen={openModal}
+				ariaHideApp={false}
+				onRequestClose={() => setOpenModal(false)}
+				style={{
+					overlay: {
+						backgroundColor: "rgba(0,0,0,0.4)",
+					},
+					content: {
+						width: "30rem",
+						margin: "auto",
+						height: "27rem",
+						borderRadius: "10px",
+					},
+				}}
+			>
+				<ModalChangePassword setModalIsOpen={setOpenModal} />
+			</Modal>
 		</div>
 	);
 };
