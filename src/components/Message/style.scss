@@ -1,9 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap");
 
 .label-chanel {
-	margin-right: 30px;
+	margin-right: 28px;
 	font-family: "Roboto", sans-serif;
 	color: white;
+	font-size: 14px;
+	text-transform: lowercase;
+	background-color: rgb(235, 98, 77);
+	padding: 5px;
+	border-radius: 10px;
 }
 .message-header {
 	padding: 10px 10px;
@@ -25,5 +30,13 @@
 			color: #cdcdcd;
 			display: inline;
 		}
+	}
+}
+.message-menu {
+	button {
+		padding: 4px 8px;
+		border-radius: 7px;
+		background-color: rgb(55, 172, 235);
+		color: white;
 	}
 }

@@ -35,14 +35,21 @@ const ManagerMessage = () => {
 
 	const createBadMessage = () => {
 		setOpenModalAdd(true);
-		// dispatch(createBadWord(badWord));
-		// setBadWord("");
 	};
 
 	return (
 		<>
 			<div className="right-badword">
 				<div className="menu-card bottom">
+					<div className="card-items">
+						<span className="card-items-title">Total Bad Word</span>
+						<div className="card-item">
+							<img src={Ban} alt="" />
+							<div className="card-data">
+								<span>+{listDataBadWord.list.length}</span>
+							</div>
+						</div>
+					</div>
 					<div className="card-items">
 						<span className="card-items-title">Total Message Today</span>
 						<div className="card-item">
@@ -58,15 +65,6 @@ const ManagerMessage = () => {
 							<img src={Card2} alt="" />
 							<div className="card-data">
 								<span>+{listMessage.listStatistic.totalMessageThisMonth}</span>
-							</div>
-						</div>
-					</div>
-					<div className="card-items">
-						<span className="card-items-title">Total Bad Word</span>
-						<div className="card-item">
-							<img src={Ban} alt="" />
-							<div className="card-data">
-								<span>+{listDataBadWord.list.length}</span>
 							</div>
 						</div>
 					</div>

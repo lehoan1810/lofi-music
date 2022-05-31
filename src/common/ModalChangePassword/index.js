@@ -19,7 +19,7 @@ const ModalChangePassword = (props) => {
 				});
 				return;
 			} else {
-				dispatch(changePassWord(newPassword, confirmPassword));
+				dispatch(changePassWord(password, newPassword));
 			}
 		} else {
 			toast.error("Thông tin chưa hợp lệ, vui lòng thử lại !", {
@@ -33,17 +33,20 @@ const ModalChangePassword = (props) => {
 		<div>
 			{" "}
 			<div className="from-update">
-				<h1>Create admin</h1>
+				<h1>Change Password</h1>
+				<span className="title-change-pass">Nhập mật khẩu hiện tại (*)</span>
 				<input
 					onChange={(e) => setPassword(e.target.value)}
-					type="text"
+					type="password"
 					placeholder="Nhập mật khẩu hiện tại"
 				/>
+				<span className="title-change-pass">Nhập mật khẩu mới (*)</span>
 				<input
 					onChange={(e) => setNewPassword(e.target.value)}
 					type="password"
 					placeholder="Nhập mật khẩu mới"
 				/>
+				<span className="title-change-pass">Nhập lại mật khẩu (*)</span>
 				<input
 					onChange={(e) => setConfirmPassword(e.target.value)}
 					type="password"

@@ -82,11 +82,6 @@ const Dashboard = () => {
 		} else {
 			dispatch(changeRain("clear", e.target.value));
 		}
-
-		// if (e.target.value > 0) dispatch(changeRainStatus("clear", cityRain));
-		// // if value = 0 then stop rain
-		// else if (e.target.value === 0) dispatch(changeRainStatus("rain", 0));
-		// setCityRain(e.target.value);
 	};
 	const showHanleModal = () => {
 		setOpenModal(!openModal);
@@ -270,25 +265,6 @@ const Dashboard = () => {
 							}
 						></i>
 					</div>
-
-					{/* {getSessonName ? (
-						<div>
-							{openChat && (
-								<Message
-									listMessage={listMessage}
-									openChatHandler={openChatHandler}
-								/>
-							)}
-							<div className={`icon ` + (openFocus && "active")}>
-								<i
-									onClick={openMoodHandler}
-									className={"bx bxs-calendar " + (openFocus && "bx-tada")}
-								></i>
-							</div>
-						</div>
-					) : (
-						<ModalCreateName />
-					)} */}
 					<div>
 						{openChat && (
 							<Message
@@ -296,12 +272,6 @@ const Dashboard = () => {
 								openChatHandler={openChatHandler}
 							/>
 						)}
-						<div className={`icon ` + (openFocus && "active")}>
-							<i
-								onClick={openChatHandler}
-								className={"bx bxs-calendar " + (openFocus && "bx-tada")}
-							></i>
-						</div>
 					</div>
 				</div>
 			</div>

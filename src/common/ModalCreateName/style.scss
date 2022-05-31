@@ -17,8 +17,12 @@
 	border-radius: 10px;
 	transition: all 0.2s ease-in-out;
 	.err-title {
-		font-size: 13px;
+		font-size: 14px;
 		color: red;
+	}
+	.success-title {
+		font-size: 14px;
+		color: rgb(55, 172, 235);
 	}
 	.title-modals {
 		text-align: center;

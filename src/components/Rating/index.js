@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Rating } from "react-simple-star-rating";
 import Star from "../../assets/images/star.png";
+import Home from "../../assets/images/home.png";
 import { createRating } from "../../redux/actions/rating";
+import { Link } from "react-router-dom";
 import "./style.scss";
 
 const RatingComponent = () => {
@@ -19,6 +21,9 @@ const RatingComponent = () => {
 		<div className="background-ocean">
 			<div className="card-success ">
 				<div className="card-rating">
+					<Link to="/">
+						<img className="back-home" src={Home} alt="" />
+					</Link>
 					<div className="card-rating-item-image">
 						<img src={Star} alt="" />
 					</div>

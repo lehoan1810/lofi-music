@@ -3,24 +3,26 @@ import Exit from "../../assets/images/exit.png";
 import axios from "axios";
 import "./style.scss";
 import { getLocal, setLocal } from "../../LocalStorage/getLocal";
+
 import { toast } from "react-toastify";
 
 const ModalCreateName = (prop) => {
 	const { openModal, setOpenModal } = prop;
 	const [name, setName] = useState("");
+	const [error, setError] = useState("");
 	const checkToken = setLocal("token");
 	const checkName = setLocal("name");
 	const url = `https://lofi-chill-chatting.herokuapp.com/rest/message/dk-ten`;
 	const handelRegister = async () => {
 		try {
 			const res = await axios.post(url, { name: name });
+			setError("success");
 			getLocal("token", res.data.token);
 			getLocal("name", res.data.name);
-			toast.success("Tạo thành công !");
 			window.location.reload();
 		} catch (error) {
 			console.error(error.message);
-			toast.error("Vui lòng nhập lớn hơn 6 ký tự !");
+			setError("faild");
 		}
 	};
 
@@ -39,9 +41,7 @@ const ModalCreateName = (prop) => {
 						<div onClick={() => setOpenModal(false)} className="exit">
 							<img src={Exit} alt="" />
 						</div>
-						<span className="err-title">
-							Bạn vui lòng nhập lớn hơn 6 ký tự (*)
-						</span>
+
 						<div className="contents">
 							<input
 								className="input-name"
@@ -50,6 +50,15 @@ const ModalCreateName = (prop) => {
 								onChange={(e) => setName(e.target.value)}
 							/>
 						</div>
+						{error === "faild" ? (
+							<span className="err-title">
+								Bạn vui lòng nhập lớn hơn 6 ký tự (*)
+							</span>
+						) : error === "success" ? (
+							<span className="success-title">Thành công</span>
+						) : (
+							""
+						)}
 
 						<span></span>
 						<div className="btn-create-name">

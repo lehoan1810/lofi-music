@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Exit from "../../assets/images/exit.png";
 import axios from "axios";
-import { setLocal } from "../../LocalStorage/getLocal";
+import { removeLocal, setLocal } from "../../LocalStorage/getLocal";
 import SockJS from "sockjs-client";
 // import Stomp from "stompjs";
 import { over } from "stompjs";
@@ -9,12 +9,14 @@ import "./style.scss";
 import SkeletonChat from "../../common/SkeletonChat";
 import { useDispatch, useSelector } from "react-redux";
 import { appendMessage, getMessage } from "../../redux/actions/messageSocket";
+import ModalCreateName from "../../common/ModalCreateName/index";
 
 var stompClient = null;
 const Message = (prop) => {
 	const dispatch = useDispatch();
 	const { openChatHandler } = prop;
 	const [message, setMessage] = useState("");
+	const [openModal, setOpenModal] = useState(false);
 	const [chanel, setChanel] = useState("CHANNEL_1");
 
 	const nameStorage = setLocal("name");
@@ -91,57 +93,64 @@ const Message = (prop) => {
 		}
 	}, [list]);
 
-	return (
-		<div className="form-message">
-			<div className="message-header">
-				<div className="form-group">
-					<label className="label-chanel" htmlFor="select1">
-						{chanel}
-					</label>
-					<select
-						value={chanel}
-						onChange={(e) => changeChanel(e)}
-						className="form-control"
-					>
-						<option value="select">Select an chanel</option>
-						<option value="CHANNEL_1">CHANNEL_1</option>
-						<option value="CHANNEL_2">CHANNEL_2</option>
-						<option value="CHANNEL_3">CHANNEL_3</option>
-					</select>
-				</div>
+	const handleShowChangeName = () => {
+		removeLocal("name");
+		removeLocal("userName");
+		removeLocal("token");
+		removeLocal("tokenAdmin");
+		window.location = "/";
+	};
 
-				<div className="message-menu">
-					<div onClick={openChatHandler} className="menu-item">
-						<img src={Exit} alt="" />
+	return (
+		<>
+			<div className="form-message">
+				<div className="message-header">
+					<div className="form-group">
+						<label className="label-chanel" htmlFor="select1">
+							{chanel}
+						</label>
+						<select
+							value={chanel}
+							onChange={(e) => changeChanel(e)}
+							className="form-control"
+						>
+							<option value="select">Select an chanel</option>
+							<option value="CHANNEL_1">CHANNEL_1</option>
+							<option value="CHANNEL_2">CHANNEL_2</option>
+							<option value="CHANNEL_3">CHANNEL_3</option>
+						</select>
+					</div>
+
+					<div onClick={handleShowChangeName} className="message-menu">
+						<button>Đăng xuất</button>
 					</div>
 				</div>
-			</div>
-			<div className="message-content">
-				{list.length === 0 && <SkeletonChat />}
-				<div ref={messageRef} className="guest">
-					{list &&
-						list.map((item, id) => (
-							<div key={id} className="message-guest">
-								<span className="guest-name">
-									<p>{item.guestName}</p> : {item.message}
-								</span>
-							</div>
-						))}
+				<div className="message-content">
+					{list.length === 0 && <SkeletonChat />}
+					<div ref={messageRef} className="guest">
+						{list &&
+							list.map((item, id) => (
+								<div key={id} className="message-guest">
+									<span className="guest-name">
+										<p>{item.guestName}</p> : {item.message}
+									</span>
+								</div>
+							))}
+					</div>
 				</div>
-				{/* )} */}
+				<div className="message-send">
+					<input
+						value={message}
+						onChange={(e) => inputMessage(e)}
+						type="text"
+						placeholder="Write a message..."
+						onKeyUp={handleKeyUp}
+					/>
+					<i onClick={ConnectSocket} className="bx bx-wink-smile"></i>
+					<i onClick={sendMessage} className="bx bx-send"></i>
+				</div>
 			</div>
-			<div className="message-send">
-				<input
-					value={message}
-					onChange={(e) => inputMessage(e)}
-					type="text"
-					placeholder="Write a message..."
-					onKeyUp={handleKeyUp}
-				/>
-				<i onClick={ConnectSocket} className="bx bx-wink-smile"></i>
-				<i onClick={sendMessage} className="bx bx-send"></i>
-			</div>
-		</div>
+		</>
 	);
 };
 

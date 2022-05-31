@@ -47,14 +47,23 @@ const Header = () => {
 						</Link>
 					</div>
 					<div className="nav-menu">
-						<div className="nav-item">
-							<Link to="/">Contact us</Link>
+						<div className="nav-item tooltip">
+							<Link to="/">
+								Contact us
+								<span className="tooltiptext">Comming soon</span>
+							</Link>
 						</div>
-						<div className="nav-item">
-							<Link to="/">More</Link>
+						<div className="nav-item tooltip">
+							<Link to="/">
+								More
+								<span className="tooltiptext">Comming soon</span>
+							</Link>
 						</div>
-						<div className="nav-item">
-							<Link to="/">Settings</Link>
+						<div className="nav-item tooltip">
+							<Link to="/">
+								Settings
+								<span className="tooltiptext">Comming soon</span>
+							</Link>
 						</div>
 					</div>
 					<div className="nav-menu-handle">

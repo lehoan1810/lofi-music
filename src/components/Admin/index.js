@@ -118,7 +118,7 @@ const Sidebar = () => {
 					content: {
 						width: "30rem",
 						margin: "auto",
-						height: "27rem",
+						height: "31rem",
 						borderRadius: "10px",
 					},
 				}}
