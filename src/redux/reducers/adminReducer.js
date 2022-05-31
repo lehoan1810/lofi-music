@@ -1,4 +1,8 @@
-import { GET_ADMIN, POST_ADMIN } from "../constants/actionAdmin";
+import {
+	CHANGE_PASSWORD,
+	GET_ADMIN,
+	POST_ADMIN,
+} from "../constants/actionAdmin";
 
 const INITIAL_STATE = {
 	list: [],
@@ -16,6 +20,8 @@ const AddAdmin = (state = INITIAL_STATE, action) => {
 				...state,
 				list: action.payload,
 			};
+		case CHANGE_PASSWORD:
+			return;
 
 		default:
 			return state;

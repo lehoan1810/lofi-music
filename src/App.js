@@ -7,6 +7,7 @@ import ManagerStatistic from "./pages/Statistic/index";
 import "./App.scss";
 import Loading from "./common/Loading";
 import ManagerMessage from "./pages/ManagerMessage";
+import RatingComponent from "./components/Rating";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<Route path="/" element={<Header />} />
 				<Route path="login" element={<Login />} />
 				<Route path="test" element={<Loading />} />
+				<Route path="rating" element={<RatingComponent />} />
 				<Route path="admin" element={<Sidebar />}>
 					<Route path="ManagerUser" element={<ManagerUser />} />
 					<Route path="ManagerStatistic" element={<ManagerStatistic />} />

@@ -6,15 +6,12 @@ import Container from "../Container/Container";
 import "./style.scss";
 import ModalCreateName from "../../common/ModalCreateName";
 import Rating from "../../assets/images/rating.png";
-import ModalRating from "../../common/ModalRating";
-import Modal from "react-modal/lib/components/Modal";
 import Logo from "../../assets/images/logo-gif.gif";
 
 const Header = () => {
 	const daynight = useSelector((state) => state.modeState);
 
 	const [openModal, setOpenModal] = useState(true);
-	const [openModalRating, setOpenModalRating] = useState(true);
 
 	const dispatch = useDispatch();
 	const { mode } = daynight;
@@ -39,10 +36,6 @@ const Header = () => {
 				document.msExitFullscreen();
 			}
 		}
-	};
-	const handelShowModal = () => {
-		setOpenModalRating(true);
-		console.log("show mdal");
 	};
 	return (
 		<>
@@ -80,10 +73,10 @@ const Header = () => {
 							<i className="bx bx-fullscreen"></i>
 						</div>
 
-						<div onClick={handelShowModal} className="btn-rating">
+						<Link to="/rating" href="" className="btn-rating">
 							<img className="icon-rating" src={Rating} alt="" />
 							<span>Rating </span>
-						</div>
+						</Link>
 						<div className="btn-login">
 							<button>
 								<Link className="link-login" to="/login" href="">
@@ -97,24 +90,6 @@ const Header = () => {
 			<ModalCreateName openModal={openModal} setOpenModal={setOpenModal} />
 
 			<Container check={mode} />
-			<Modal
-				isOpen={openModalRating}
-				ariaHideApp={false}
-				onRequestClose={() => setOpenModalRating(false)}
-				style={{
-					overlay: {
-						backgroundColor: "rgba(0,0,0,0.4)",
-					},
-					content: {
-						width: "30rem",
-						margin: "auto",
-						height: "27rem",
-						borderRadius: "10px",
-					},
-				}}
-			>
-				<ModalRating setOpenModal={setOpenModalRating} />
-			</Modal>
 		</>
 	);
 };

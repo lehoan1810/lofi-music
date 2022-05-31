@@ -1,11 +1,34 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { changePassWord } from "../../redux/actions/admin";
+import { toast } from "react-toastify";
+import "./style.scss";
 
 const ModalChangePassword = (props) => {
 	const { setModalIsOpen } = props;
+	const dispatch = useDispatch();
 	const [password, setPassword] = useState("");
 	const [newPassword, setNewPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const handleChange = () => {};
+	const handleChange = () => {
+		if (newPassword && confirmPassword && password) {
+			if (newPassword !== confirmPassword) {
+				toast.error("Mật khẩu nhập lại không hợp lệ !", {
+					autoClose: 900,
+					hideProgressBar: true,
+				});
+				return;
+			} else {
+				dispatch(changePassWord(newPassword, confirmPassword));
+			}
+		} else {
+			toast.error("Thông tin chưa hợp lệ, vui lòng thử lại !", {
+				autoClose: 900,
+				hideProgressBar: true,
+			});
+			return;
+		}
+	};
 	return (
 		<div>
 			{" "}
@@ -18,15 +41,15 @@ const ModalChangePassword = (props) => {
 				/>
 				<input
 					onChange={(e) => setNewPassword(e.target.value)}
-					type="text"
+					type="password"
 					placeholder="Nhập mật khẩu mới"
 				/>
 				<input
 					onChange={(e) => setConfirmPassword(e.target.value)}
-					type="text"
-					placeholder="Mật khẩu"
+					type="password"
+					placeholder="Nhập lại mật khẩu"
 				/>
-				<div className="Nhập lại mật khẩu">
+				<div className="handle-change-password">
 					<button
 						onClick={() => {
 							setModalIsOpen(false);

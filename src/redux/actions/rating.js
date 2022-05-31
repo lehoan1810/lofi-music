@@ -7,13 +7,14 @@ export const createRating = (payload) => {
 		try {
 			const res = await axios.post(
 				`${process.env.REACT_APP_LOFI_URL}/rest/danh-gia`,
-				{ badWord: payload },
+				{ overallScore: payload },
 				{ headers: authHeader() }
 			);
 			toast.success("Đánh giá thành công !", {
 				autoClose: 900,
 				hideProgressBar: true,
 			});
+			window.location.href = "/";
 
 			dispatch({
 				type: POST_RATING,

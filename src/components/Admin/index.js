@@ -76,7 +76,7 @@ const Sidebar = () => {
 								<NavLink
 									to={item.link}
 									className={(navData) =>
-										navData.isActive ? "menuItem active" : "menuItem"
+										navData.isActive ? "menuItem actives" : "menuItem"
 									}
 									key={index}
 									onClick={() => setSelected(index)}
@@ -90,13 +90,13 @@ const Sidebar = () => {
 						})}
 
 						<div className="menuItem flex-column ">
-							<div onClick={() => setOpenModal(true)}>
+							<div className="handle-items" onClick={() => setOpenModal(true)}>
 								<div className="item-logOut">
 									<img className="icon-dashboard" src={Password} alt="" />
 									<span>Change Password</span>
 								</div>
 							</div>
-							<div onClick={handleLogOut}>
+							<div className="handle-items" onClick={handleLogOut}>
 								<div className="item-logOut">
 									<img src={Off} alt="" />
 									<span>LOG OUT</span>
