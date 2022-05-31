@@ -20,19 +20,22 @@ const ModalCreateAdmin = (prop) => {
 		<>
 			<div className="from-update">
 				<h1>Create admin</h1>
+				<span className="title-change-pass">Tên đăng nhập (*)</span>
 				<input
 					onChange={(e) => setUser(e.target.value)}
 					type="text"
 					placeholder="Tên đăng nhập"
 				/>
+				<span className="title-change-pass">Họ và Tên (*)</span>
 				<input
 					onChange={(e) => setUsername(e.target.value)}
 					type="text"
 					placeholder="Họ và Tên"
 				/>
+				<span className="title-change-pass">Mật khẩu (*)</span>
 				<input
 					onChange={(e) => setPassword(e.target.value)}
-					type="text"
+					type="password"
 					placeholder="Mật khẩu"
 				/>
 				<div className="handel-badWord">

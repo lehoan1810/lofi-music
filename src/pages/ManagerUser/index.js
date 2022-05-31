@@ -72,9 +72,8 @@ const ManagerUser = () => {
 						<thead>
 							<tr>
 								<th>Avatar</th>
-								<th className="custom-title">Họ và Tên</th>
-								<th>Trạng Thái</th>
-								<th>Xem</th>
+								<th className="form-right">Họ và Tên</th>
+								<th className="form-right">Trạng Thái hiện tại</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -103,12 +102,6 @@ const ManagerUser = () => {
 									<td>
 										<div className="action-handel">Đang Hoạt Động</div>
 									</td>
-
-									<td>
-										<div className="action-seen">
-											<button>Update</button>
-										</div>
-									</td>
 								</tr>
 							))}
 						</tbody>
@@ -129,7 +122,7 @@ const ManagerUser = () => {
 					content: {
 						width: "30rem",
 						margin: "auto",
-						height: "27rem",
+						height: "31rem",
 						borderRadius: "10px",
 					},
 				}}

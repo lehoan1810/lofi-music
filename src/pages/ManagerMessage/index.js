@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { badMessage } from "../../redux/actions/badMessage";
 import Bad from "../../assets/images/bad.png";
-import "./style.scss";
+
 import ModalUpdate from "../../common/ModalUpdate";
 import Modal from "react-modal/lib/components/Modal";
 import Dog from "../../assets/images/Dog.png";
@@ -15,6 +15,7 @@ import LoadingTable from "../../common/LoadingTable";
 import ModalDelete from "../../common/ModalDelete";
 import { getListStatistic } from "../../redux/actions/statistic";
 import ModalAdd from "../../common/ModalAdd";
+import "./style.scss";
 
 const ManagerMessage = () => {
 	const dispatch = useDispatch();

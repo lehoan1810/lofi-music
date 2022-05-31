@@ -188,12 +188,11 @@ $radius: 0.2rem;
 .table td {
 	vertical-align: middle;
 	padding: 1.5rem 1rem;
-	/* white-space: nowrap; */
 	font-size: 14px;
 	font-weight: normal;
 	color: #333;
-	// text-align: center;
-	width: 100px;
+	width: 50px;
+	text-align: left;
 }
 .table .image-text {
 	display: flex;
@@ -272,4 +271,7 @@ $radius: 0.2rem;
 	align-items: center;
 	justify-content: space-between;
 	cursor: pointer;
+}
+.form-right {
+	text-align: right !important;
 }
