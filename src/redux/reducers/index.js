@@ -8,6 +8,7 @@ import MessageReducer from "./messageReducer";
 import ratingReducer from "./ratingReducer";
 import statisticReducer from "./statisticReducer";
 import AddAdmin from "./adminReducer";
+import getCurrentUser from "./userReducer";
 
 export const rootReducer = combineReducers({
 	modeState: modeReducer,
@@ -19,4 +20,5 @@ export const rootReducer = combineReducers({
 	ratingReducer: ratingReducer,
 	statisticReducer: statisticReducer,
 	AddAdmin: AddAdmin,
+	getCurrentUser: getCurrentUser,
 });

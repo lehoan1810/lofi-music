@@ -12,17 +12,43 @@ import ModalCreateAdmin from "../../common/ModalCreateAdmin";
 import { useDispatch, useSelector } from "react-redux";
 import { getListAdmin } from "../../redux/actions/admin";
 import { getListStatistic } from "../../redux/actions/statistic";
+import SockJS from "sockjs-client";
+import { over } from "stompjs";
+import { getUserCurrent } from "../../redux/actions/user";
 
+var stompClient = null;
 const ManagerUser = () => {
 	const dispatch = useDispatch();
 	const [openModal, setOpenModal] = useState(false);
 	const listDataAdmin = useSelector((state) => state.AddAdmin);
 	const listMessage = useSelector((state) => state.statisticReducer);
+	const listUser = useSelector((state) => state.getCurrentUser);
+	const SOCKET_URL = `${process.env.REACT_APP_LOFI_URL}/ws`;
+
+	useEffect(() => {
+		ConnectSocket();
+		dispatch(getUserCurrent());
+	}, []);
 
 	useEffect(() => {
 		dispatch(getListAdmin());
 		dispatch(getListStatistic());
 	}, []);
+
+	const ConnectSocket = () => {
+		let Sock = new SockJS(SOCKET_URL);
+		stompClient = over(Sock);
+		stompClient.connect({}, onConnected, onError);
+	};
+	const onConnected = () => {
+		stompClient.subscribe(`/message/number-user`, function (m) {
+			const m2 = JSON.parse(m.body);
+		});
+	};
+	const onError = (err) => {
+		console.log(err);
+	};
+
 	return (
 		<div className="right-content">
 			<div className="menu-card">
@@ -56,12 +82,12 @@ const ManagerUser = () => {
 				</div>
 				<div className="card-items">
 					<div className="admin-flex">
-						<span className="card-items-title">Total Invoice</span>
+						<span className="card-items-title">Concurrent user</span>
 					</div>
 					<div className="card-item">
 						<img src={Card3} alt="" />
 						<div className="card-data">
-							<span>+20</span>
+							<span>+{listUser.listCurrentUser}</span>
 						</div>
 					</div>
 				</div>

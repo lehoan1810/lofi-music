@@ -26,7 +26,7 @@ const SidebarData = [
 	},
 	{
 		icon: <img className="icon-dashboard" src={Mess} alt="" />,
-		heading: "Manager Message",
+		heading: "Message manager",
 		link: "/admin/ManagerMessage",
 	},
 ];

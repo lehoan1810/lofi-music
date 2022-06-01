@@ -30,11 +30,9 @@ const Message = (prop) => {
 	var sub = useRef(chanel);
 
 	const changeChanel = (e) => {
-		stompClient.unsubscribe();
+		stompClient.disconnect();
 		sub.current = e.target.value;
 		setChanel(e.target.value);
-		// onConnected();
-		// ConnectSocket();
 	};
 	useEffect(() => {
 		ConnectSocket();

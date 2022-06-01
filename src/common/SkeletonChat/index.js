@@ -7,36 +7,36 @@ const SkeletonChat = () => {
 	return (
 		<div>
 			<div className="flex">
-				<Skeleton height={30} width={80} />
-				<Skeleton height={30} width={250} />
+				<Skeleton height={30} width={50} />
+				<Skeleton height={30} width={270} />
 			</div>
 			<div className="flex">
-				<Skeleton height={30} width={80} />
-				<Skeleton height={30} width={250} />
+				<Skeleton height={30} width={50} />
+				<Skeleton height={30} width={270} />
 			</div>
 			<div className="flex">
-				<Skeleton height={30} width={80} />
-				<Skeleton height={30} width={250} />
+				<Skeleton height={30} width={50} />
+				<Skeleton height={30} width={270} />
 			</div>
 			<div className="flex">
-				<Skeleton height={30} width={80} />
-				<Skeleton height={30} width={250} />
+				<Skeleton height={30} width={50} />
+				<Skeleton height={30} width={270} />
 			</div>
 			<div className="flex">
-				<Skeleton height={30} width={80} />
-				<Skeleton height={30} width={250} />
+				<Skeleton height={30} width={50} />
+				<Skeleton height={30} width={270} />
 			</div>
 			<div className="flex">
-				<Skeleton height={30} width={80} />
-				<Skeleton height={30} width={250} />
+				<Skeleton height={30} width={50} />
+				<Skeleton height={30} width={270} />
 			</div>
 			<div className="flex">
-				<Skeleton height={30} width={80} />
-				<Skeleton height={30} width={250} />
+				<Skeleton height={30} width={50} />
+				<Skeleton height={30} width={270} />
 			</div>
 			<div className="flex">
-				<Skeleton height={30} width={80} />
-				<Skeleton height={30} width={250} />
+				<Skeleton height={30} width={50} />
+				<Skeleton height={30} width={270} />
 			</div>
 		</div>
 	);

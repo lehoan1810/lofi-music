@@ -73,7 +73,7 @@ const ManagerMessage = () => {
 
 				<div className="add-badword">
 					<div className="btn-badword" type="button" onClick={createBadMessage}>
-						<img src={Plus} alt="" srcset="" />
+						<img src={Plus} alt="" />
 						<span>Add</span>
 					</div>
 				</div>
