@@ -122,7 +122,7 @@ const Message = (prop) => {
 					</div>
 
 					<div onClick={handleShowChangeName} className="message-menu">
-						<button>Đăng xuất</button>
+						<button>Đổi tên</button>
 					</div>
 				</div>
 				<div className="message-content">
